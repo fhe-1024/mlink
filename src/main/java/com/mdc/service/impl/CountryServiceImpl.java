@@ -11,16 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mdc.dao.CountryDao;
 import com.mdc.service.ICountryService;
+import com.mdc.util.PageUtil;
 import com.mdc.view.MlinkCountry;
+
 @Service
 @Transactional
 public class CountryServiceImpl implements ICountryService {
-	
-	private Log log = LogFactory.getLog(getClass());
-	
+
 	@Autowired
 	private CountryDao countryDao;
-	
+
 	public List<Map<String, Object>> get() throws Exception {
 		// TODO Auto-generated method stub
 		return countryDao.get();
@@ -28,7 +28,18 @@ public class CountryServiceImpl implements ICountryService {
 
 	public int save(MlinkCountry country) throws Exception {
 		// TODO Auto-generated method stub
-		return	countryDao.save(country);
+		return countryDao.save(country);
+	}
+
+	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+
+		return countryDao.getAllMapList(map);
+	}
+
+	public void getList(PageUtil<MlinkCountry> page, Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		countryDao.getList(page, map);
 	}
 
 }

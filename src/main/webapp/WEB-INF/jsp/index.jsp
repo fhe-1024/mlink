@@ -24,7 +24,7 @@
 			<div class="easyui-layout" style="width: 100%; height: 800px;">
 				<div data-options="region:'west',split:true" title="West"
 					style="width: 200px;">
-					<ul class="easyui-tree" id="tt" data-options="url:'area/get',method:'get',animate:true">
+					<ul class="easyui-tree" id="tt" data-options="url:'tree/getTreeMenu',method:'get',animate:true">
 					</ul>
 				</div>
 				

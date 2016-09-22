@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mdc.dao.CityDao;
-
+import com.mdc.util.PageUtil;
+import com.mdc.view.MlinkCity;
+import com.mdc.view.MlinkCountry;
 
 @Repository
 public class CityDaoImpl implements CityDao {
@@ -59,7 +62,7 @@ public class CityDaoImpl implements CityDao {
 					}
 				});
 		return actors;
-		
+
 	}
 
 	public List<Map<String, Object>> getValueById() throws Exception {
@@ -86,6 +89,62 @@ public class CityDaoImpl implements CityDao {
 	public void save(String name, int sort) throws Exception {
 		// TODO Auto-generated method stub
 
+	}
+
+	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		StringBuilder sb = new StringBuilder();
+		Map<String, Object> argsMap = new HashMap<String, Object>();
+		sb.append("select id,name,sort from mlink_city where 1=1 ");
+		if (StringUtils.isNotBlank((String) map.get("countryid"))) {
+			sb.append(" and countryid=:countryid ");
+			argsMap.put("countryid", map.get("countryid"));
+		}
+		sb.append(" order by sort ");
+		List<Map<String, Object>> actors = this.namedJdbcTemplate.query(sb.toString(), argsMap,
+				new RowMapper<Map<String, Object>>() {
+					public Map<String, Object> mapRow(ResultSet rs, int rowNum) throws SQLException {
+						// TODO Auto-generated method stub
+						Map<String, Object> map = new HashMap<String, Object>();
+						map.put("id", rs.getString("id"));
+						map.put("name", rs.getString("name"));
+						map.put("sort", rs.getInt("sort"));
+						return map;
+					}
+				});
+		return actors;
+	}
+
+	public void getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		StringBuilder sb = new StringBuilder();
+		StringBuilder countsb = new StringBuilder();
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		Map<String, Object> countMap = new HashMap<String, Object>();
+		sb.append("select id,name,sort from mlink_city where 1=1 ");
+		countsb.append("select count(id) from mlink_country where 1=1");
+		if (StringUtils.isNotBlank((String) map.get("countryid"))) {
+			sb.append("and countryid=:countryid ");
+			searchMap.put("countryid", map.get("countryid"));
+			countsb.append(" and  countryid=:countryid ");
+			countMap.put("countryid", map.get("countryid"));
+		}
+		sb.append("limit :start,:end ");
+		searchMap.put("start", page.getFirst());
+		searchMap.put("end", page.getPageSize());
+		List<MlinkCity> actors = this.namedJdbcTemplate.query(sb.toString(), searchMap, new RowMapper<MlinkCity>() {
+			public MlinkCity mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				MlinkCity city = new MlinkCity();
+				city.setId(rs.getString("id"));
+				city.setName(rs.getString("name"));
+				city.setSort(rs.getInt("sort"));
+				return city;
+			}
+		});
+		page.setResult(actors);
+		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), countMap, Integer.class);
+		page.setTotalCount(total);
 	}
 
 }

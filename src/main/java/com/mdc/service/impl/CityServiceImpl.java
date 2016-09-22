@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mdc.dao.CityDao;
 import com.mdc.service.ICityService;
+import com.mdc.util.PageUtil;
+import com.mdc.view.MlinkCity;
 
 @Service
 @Transactional
@@ -25,6 +27,16 @@ public class CityServiceImpl implements ICityService {
 	public void save() throws Exception {
 		// TODO Auto-generated method stub
 
+	}
+
+	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return cityDao.getAllMapList(map);
+	}
+
+	public void getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		cityDao.getList(page, map);
 	}
 
 }
