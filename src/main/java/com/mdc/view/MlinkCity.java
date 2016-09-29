@@ -38,4 +38,9 @@ public class MlinkCity {
 		this.countryid = countryid;
 	}
 
+	@Override
+	public String toString() {
+		return "MlinkCity [id=" + id + ", name=" + name + ", sort=" + sort + ", countryid=" + countryid + "]";
+	}
+
 }

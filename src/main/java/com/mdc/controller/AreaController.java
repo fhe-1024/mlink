@@ -101,7 +101,6 @@ public class AreaController {
 		String rows = request.getParameter("rows");
 		String level = request.getParameter("level");
 		String id = request.getParameter("id");
-		System.out.println(page + ":" + rows + ":" + level + ":" + id);
 		try {
 			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 			if ("mlink".equals(level) || StringUtils.isBlank(level)) {

@@ -9,7 +9,7 @@ import com.mdc.view.MlinkCity;
 public interface ICityService {
 	public List<Map<String, Object>> getValueByCountryID(String countryid) throws Exception;
 
-	public void save() throws Exception;
+	public int save(MlinkCity city) throws Exception;
 
 	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception;
 

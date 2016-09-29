@@ -14,25 +14,32 @@ public class ServicePointCut {
 
 	private Log log = LogFactory.getLog(getClass());
 
-	@Pointcut("execution(* com.mdc.service.*.*(..))")
-	public void businessService() {
-	}
+	// @Pointcut("execution(* com.mdc.service.*.*(..))")
+	// public void businessService() {
+	// }
+	//
+	// @Before("businessService()")
+	// public void beforeService() {
+	// log.info("before point invoked");
+	// }
+	//
+	// @After("execution(* com.mdc.service.*.*(..))")
+	// public void afterService() {
+	// log.info("after point invoked");
+	// }
 
-	@Before("businessService()")
-	public void beforeService() {
-		log.info("before point invoked");
-	}
-
-	@After("execution(* com.mdc.service.*.*(..))")
-	public void afterService() {
-		log.info("after point invoked");
-	}
-
-	@Around("businessService()")
+	@Around("execution(* com.mdc.service.*.*(..))")
 	public Object aroundService(ProceedingJoinPoint joinpoint) throws Throwable {
-		log.info("before around point invoked");
+		log.info("↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓");
+		log.info("调用方法:" + joinpoint.getSignature().getDeclaringType().getName() + "."
+				+ joinpoint.getSignature().getName());
+		Object[] args = joinpoint.getArgs();
+		for (int i = 0; i < args.length; i++) {
+			log.info("参数[" + i + "]" + args[i]);
+		}
 		Object obj = joinpoint.proceed();
-		log.info("after around point invoked");
+		log.info("返回结果:" + obj.toString());
+		log.info("↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑");
 		return obj;
 	}
 

@@ -86,9 +86,12 @@ public class CityDaoImpl implements CityDao {
 		return actors;
 	}
 
-	public void save(String name, int sort) throws Exception {
+	public int save(MlinkCity city) throws Exception {
 		// TODO Auto-generated method stub
-
+		int test = this.jdbctemplate.update("insert into mlink_city (id,name,sort,countryid) values (?,?,?,?)", city.getId(),
+				city.getName(), city.getSort(),city.getCountryid());
+		log.info(test);
+		return test;
 	}
 
 	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception {

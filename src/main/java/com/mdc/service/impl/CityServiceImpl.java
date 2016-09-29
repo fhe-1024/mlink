@@ -24,9 +24,9 @@ public class CityServiceImpl implements ICityService {
 		return cityDao.getValueByCountryID(countryid);
 	}
 
-	public void save() throws Exception {
+	public int save(MlinkCity city) throws Exception {
 		// TODO Auto-generated method stub
-
+		return cityDao.save(city);
 	}
 
 	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception {

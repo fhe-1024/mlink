@@ -1,10 +1,9 @@
 package com.mdc.view;
 
-public class MlinkCountry {
+public class MlinkInternational {
 	private String id;
 	private String name;
 	private int sort;
-	private String internationalid;
 
 	public String getId() {
 		return id;
@@ -30,20 +29,9 @@ public class MlinkCountry {
 		this.sort = sort;
 	}
 
-	public String getInternationalid() {
-		return internationalid;
-	}
-
-	public void setInternationalid(String internationalid) {
-		this.internationalid = internationalid;
-	}
-
 	@Override
 	public String toString() {
-		return "MlinkCountry [id=" + id + ", name=" + name + ", sort=" + sort + ", internationalid=" + internationalid
-				+ "]";
+		return "MlinkInternational [id=" + id + ", name=" + name + ", sort=" + sort + "]";
 	}
-	
-	
 	
 }

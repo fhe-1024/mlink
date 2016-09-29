@@ -1,0 +1,16 @@
+package com.mdc.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.mdc.util.PageUtil;
+import com.mdc.view.MlinkInternational;
+import com.mdc.view.MlinkNode;
+
+public interface NodeDao {
+	public int save(MlinkNode node) throws Exception;
+
+	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception;
+
+	public void getList(PageUtil<MlinkNode> page, Map<String, Object> map) throws Exception;
+}
