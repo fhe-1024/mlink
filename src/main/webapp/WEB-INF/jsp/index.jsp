@@ -90,6 +90,9 @@
         <div style="margin-bottom:20px">
             <input class="easyui-textbox"  label="等级资质：" name="authentication" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
         </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-filebox" label="图片:" labelPosition="top" name="pic" data-options="prompt:'Choose a file...'" style="width:100%">
+        </div>
         <div>
             <a onclick="addNode();" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
         </div>
