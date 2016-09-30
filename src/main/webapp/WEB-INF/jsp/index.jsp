@@ -69,7 +69,7 @@
 	</div>
 	
 	<div id="nodewindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
-		 <form id="nodeform">
+		 <form id="nodeform" enctype="multipart/form-data" accept-charset="utf-8">
 		 	<input type="hidden" name="nodeid" value="">
 		 	<input type="hidden" name="nodelevel" value="">
         <div style="margin-bottom:20px">
@@ -198,6 +198,7 @@
 	}
 	
 	function addNode(){
+	
 		$.ajax({
 			url : 'tree/saveNode',
 			data : $('#nodeform').serialize(),
@@ -238,6 +239,7 @@
 				}
 			}
 		});
+		
 	}
 	
 	</script>

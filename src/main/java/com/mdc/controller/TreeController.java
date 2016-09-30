@@ -1,5 +1,6 @@
 package com.mdc.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.google.gson.Gson;
 import com.mdc.service.ICityService;
@@ -25,6 +29,7 @@ import com.mdc.service.ICountryService;
 import com.mdc.service.IInternationalService;
 import com.mdc.service.INodeService;
 import com.mdc.util.PageUtil;
+import com.mdc.util.PropertiesUtil;
 import com.mdc.view.MlinkCity;
 import com.mdc.view.MlinkCountry;
 import com.mdc.view.MlinkInternational;
@@ -227,7 +232,8 @@ public class TreeController {
 	}
 
 	@RequestMapping(path = "saveNode")
-	public void saveNode(HttpServletResponse response, HttpServletRequest request) {
+	public void saveNode(@RequestParam("pic") CommonsMultipartFile file, HttpServletResponse response,
+			HttpServletRequest request) {
 		log.info("/area/saveNode invoked");
 		String nodeid = request.getParameter("nodeid");
 		String nodelevel = request.getParameter("nodelevel");
@@ -239,6 +245,13 @@ public class TreeController {
 		String authentication = request.getParameter("authentication");
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
+
+			// 处理上传文件
+			if (file.getSize() > 0) {
+				file.transferTo(new File(PropertiesUtil.MLINK_PIC+"\\11.txt"));
+			}
+			
+			
 			int effectrow = 0;
 			String id = UUID.randomUUID().toString();
 			String level = "";
@@ -252,6 +265,7 @@ public class TreeController {
 				node.setProtocol(protocol);
 				node.setElectricity(electricity);
 				node.setAuthentication(authentication);
+
 				effectrow = nodeService.save(node);
 				level = "node";
 			}
@@ -273,6 +287,29 @@ public class TreeController {
 				// TODO Auto-generated catch block
 				log.error(e);
 			}
+		}
+	}
+
+	@RequestMapping(path = "/upload")
+	public void uplaod(@RequestParam("pic") CommonsMultipartFile file, HttpServletResponse response,
+			HttpServletRequest request) {
+
+		String nodeid = request.getParameter("nodeid");
+		String nodelevel = request.getParameter("nodelevel");
+		String name = request.getParameter("node_name");
+		String sort = request.getParameter("sort");
+		String area = request.getParameter("area");
+		String protocol = request.getParameter("protocol");
+		String electricity = request.getParameter("electricity");
+		String authentication = request.getParameter("authentication");
+		file.getSize();
+		log.info(file.getBytes());
+		log.info(file.getOriginalFilename());
+		try {
+			log.info(file.getInputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
