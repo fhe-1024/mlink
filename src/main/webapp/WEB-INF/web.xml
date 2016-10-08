@@ -40,7 +40,15 @@
 		<param-value>classpath*:applicationContext.xml</param-value>
 	</context-param>
 
-
+	<filter>
+		<filter-name>ManageFilter</filter-name>
+		<filter-class>com.mdc.filter.ManageFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>ManageFilter</filter-name>
+		<url-pattern>/manage</url-pattern>
+	</filter-mapping>
 
 
 	<servlet-mapping>
