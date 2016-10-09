@@ -41,6 +41,27 @@
 										}
 								}
 							}
+						},
+						{
+							id:'btnedt',
+							text:'删除节点',
+							iconCls:'icon-remove',
+							handler:function(){
+								var node = $('#tt').tree('getSelected');
+								if (node){
+										console.log(node.text+":"+node.id+":"+node.level);
+										$.ajax({
+											url : 'tree/deleteLevel',
+											data : {"nodelevel":node.level,"nodeid":node.id},
+											dataType : 'json',
+											async : false,
+											type : 'post',
+											success : function(json) {
+												alert(json);
+											}
+										});
+								}		
+							}
 						}]
 					});
 					
