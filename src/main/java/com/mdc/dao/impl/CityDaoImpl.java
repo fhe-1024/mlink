@@ -125,7 +125,7 @@ public class CityDaoImpl implements CityDao {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		Map<String, Object> countMap = new HashMap<String, Object>();
 		sb.append("select id,name,sort from mlink_city where 1=1 ");
-		countsb.append("select count(id) from mlink_country where 1=1");
+		countsb.append("select count(id) from mlink_city where 1=1");
 		if (StringUtils.isNotBlank((String) map.get("countryid"))) {
 			sb.append("and countryid=:countryid ");
 			searchMap.put("countryid", map.get("countryid"));
@@ -148,6 +148,11 @@ public class CityDaoImpl implements CityDao {
 		page.setResult(actors);
 		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), countMap, Integer.class);
 		page.setTotalCount(total);
+	}
+
+	public int delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return	jdbctemplate.update("delete from mlink_city where id=?", id);
 	}
 
 }

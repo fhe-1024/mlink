@@ -115,4 +115,9 @@ public class FacilityDaoImpl implements FacilityDao {
 		page.setTotalCount(total);
 	}
 
+	public int delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return	jdbctemplate.update("delete from mlink_facility where id=?", id);
+	}
+
 }

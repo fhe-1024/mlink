@@ -41,6 +41,38 @@
 										}
 								}
 							}
+						},
+						{
+							id:'btnedt',
+							text:'删除节点信息',
+							iconCls:'icon-remove',
+							handler:function(){
+								var row = $('#single_table').datagrid('getSelected');
+								if (row){
+									if(confirm("确认删除吗?")){
+										$.ajax({
+											url : 'single/deleteSingle',
+											data : {"id":row.id},
+											dataType : 'json',
+											async : false,
+											type : 'post',
+											success : function(json) {
+												if(json.result){
+													var node = $('#single').tree('getSelected');
+													if (node){
+														$("#single_table").datagrid("reload",{"level":node.level,"id":node.id});
+													}
+													$.messager.show({
+										                title:'小提示',
+										                msg:'删除成功',
+										                showType:'show'
+										            });
+												}
+											}
+										});
+									}
+								}
+							}
 						}]
 					});
 					

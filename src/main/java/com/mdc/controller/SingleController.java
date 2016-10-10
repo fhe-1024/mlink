@@ -185,4 +185,32 @@ public class SingleController {
 		}
 	}
 
+	@RequestMapping(path = "deleteSingle")
+	public void deleteSingle(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			int effectrow = 0;
+			effectrow = singleService.delete(id);
+			if (effectrow > 0) {
+				resultMap.put("result", true);
+			} else {
+				resultMap.put("result", false);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			resultMap.put("result", false);
+			e.printStackTrace();
+		} finally {
+			try {
+				response.setContentType("application/json;charset=utf-8");
+				response.getWriter().write(new Gson().toJson(resultMap));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				log.error(e);
+			}
+		}
+
+	}
+
 }

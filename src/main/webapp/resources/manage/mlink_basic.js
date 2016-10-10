@@ -50,16 +50,32 @@
 								var node = $('#tt').tree('getSelected');
 								if (node){
 										console.log(node.text+":"+node.id+":"+node.level);
-										$.ajax({
-											url : 'tree/deleteLevel',
-											data : {"nodelevel":node.level,"nodeid":node.id},
-											dataType : 'json',
-											async : false,
-											type : 'post',
-											success : function(json) {
-												alert(json);
-											}
-										});
+										
+										if(confirm("确认删除当前节点及其子节点吗?")){
+											$.ajax({
+												url : 'tree/deleteLevel',
+												data : {"nodelevel":node.level,"nodeid":node.id},
+												dataType : 'json',
+												async : false,
+												type : 'post',
+												success : function(json) {
+													if(json.result){
+														var node = $('#tt').tree('getSelected');
+														if(node){
+																$('#tt').tree('remove',node.target);
+																$('#node_table').datagrid('reload',{});
+																$.messager.show({
+													                title:'小提示',
+													                msg:'删除成功',
+													                showType:'show'
+													            });
+														}		
+													}
+												}
+											});
+										}
+										
+										
 								}		
 							}
 						}]

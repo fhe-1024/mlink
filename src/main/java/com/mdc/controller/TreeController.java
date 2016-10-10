@@ -206,7 +206,6 @@ public class TreeController {
 				node.setCityid(nodeid);
 				effectrow = nodeService.save(node);
 				level = "node";
-			} else if ("node".equals(nodelevel)) {
 			}
 
 			if (effectrow > 0) {
@@ -231,6 +230,47 @@ public class TreeController {
 		}
 	}
 
+	@RequestMapping(path = "deleteLevel")
+	public void deleteLevel(HttpServletRequest request, HttpServletResponse response) {
+		String nodeid = request.getParameter("nodeid");
+		String nodelevel = request.getParameter("nodelevel");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			int effectrow = 0;
+			if ("mlink".equals(nodelevel) || StringUtils.isBlank(nodelevel)) {
+
+			} else if ("international".equals(nodelevel)) {
+				effectrow = internationalService.delete(nodeid);
+			} else if ("country".equals(nodelevel)) {
+				effectrow = countryService.delete(nodeid);
+			} else if ("city".equals(nodelevel)) {
+				effectrow = cityService.delete(nodeid);
+			} else if ("node".equals(nodelevel)) {
+				effectrow = nodeService.delete(nodeid);
+			}
+			if (effectrow > 0) {
+				resultMap.put("id", nodeid);
+				resultMap.put("level", nodelevel);
+				resultMap.put("result", true);
+			} else {
+				resultMap.put("result", false);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			resultMap.put("result", false);
+			log.error(e);
+		} finally {
+			try {
+				response.setContentType("application/json;charset=utf-8");
+				response.getWriter().write(new Gson().toJson(resultMap));
+			} catch (Exception e) {
+				// TODO: handle exception
+				log.error(e);
+			}
+		}
+
+	}
+
 	@RequestMapping(path = "saveNode")
 	public void saveNode(@RequestParam("pic") CommonsMultipartFile file, HttpServletResponse response,
 			HttpServletRequest request) {
@@ -248,10 +288,9 @@ public class TreeController {
 
 			// 处理上传文件
 			if (file.getSize() > 0) {
-				file.transferTo(new File(PropertiesUtil.MLINK_PIC+"\\11.txt"));
+				file.transferTo(new File(PropertiesUtil.MLINK_PIC + "\\11.txt"));
 			}
-			
-			
+
 			int effectrow = 0;
 			String id = UUID.randomUUID().toString();
 			String level = "";
@@ -287,29 +326,6 @@ public class TreeController {
 				// TODO Auto-generated catch block
 				log.error(e);
 			}
-		}
-	}
-
-	@RequestMapping(path = "/upload")
-	public void uplaod(@RequestParam("pic") CommonsMultipartFile file, HttpServletResponse response,
-			HttpServletRequest request) {
-
-		String nodeid = request.getParameter("nodeid");
-		String nodelevel = request.getParameter("nodelevel");
-		String name = request.getParameter("node_name");
-		String sort = request.getParameter("sort");
-		String area = request.getParameter("area");
-		String protocol = request.getParameter("protocol");
-		String electricity = request.getParameter("electricity");
-		String authentication = request.getParameter("authentication");
-		file.getSize();
-		log.info(file.getBytes());
-		log.info(file.getOriginalFilename());
-		try {
-			log.info(file.getInputStream());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

@@ -34,4 +34,9 @@ public class NodeServiceImpl implements INodeService {
 		nodeDao.getList(page, map);
 	}
 
+	public int delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return nodeDao.delete(id);
+	}
+
 }

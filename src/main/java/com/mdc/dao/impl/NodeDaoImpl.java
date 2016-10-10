@@ -109,4 +109,9 @@ public class NodeDaoImpl implements NodeDao {
 		page.setTotalCount(total);
 	}
 
+	public int delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return	jdbctemplate.update("delete from mlink_node where id=?", id);
+	}
+
 }

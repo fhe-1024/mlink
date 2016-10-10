@@ -42,4 +42,9 @@ public class CountryServiceImpl implements ICountryService {
 		countryDao.getList(page, map);
 	}
 
+	public int delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

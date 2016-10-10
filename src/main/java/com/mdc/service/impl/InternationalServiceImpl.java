@@ -34,4 +34,9 @@ public class InternationalServiceImpl implements IInternationalService {
 		internationalDao.getList(page, map);
 	}
 
+	public int delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return internationalDao.delete(id);
+	}
+
 }

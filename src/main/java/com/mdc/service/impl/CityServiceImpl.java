@@ -39,4 +39,9 @@ public class CityServiceImpl implements ICityService {
 		cityDao.getList(page, map);
 	}
 
+	public int delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return cityDao.delete(id);
+	}
+
 }

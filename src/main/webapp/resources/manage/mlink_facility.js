@@ -54,6 +54,38 @@ var facility = function() {
 										}
 								}
 							}
+						},
+						{
+							id:'btnedt',
+							text:'删除详情',
+							iconCls:'icon-remove',
+							handler:function(){
+								var row = $('#facility_table').datagrid('getSelected');
+								if (row){
+									if(confirm("确认删除吗?")){
+										$.ajax({
+											url : 'facility/deleteFacility',
+											data : {"id":row.id},
+											dataType : 'json',
+											async : false,
+											type : 'post',
+											success : function(json) {
+												if(json.result){
+													var node = $('#facility').tree('getSelected');
+													if (node){
+														$("#facility_table").datagrid("reload",{"level":node.level,"id":node.id});
+													}
+													$.messager.show({
+										                title:'小提示',
+										                msg:'删除成功',
+										                showType:'show'
+										            });
+												}
+											}
+										});
+									}
+								}
+							}
 						}]
 					});
 					
