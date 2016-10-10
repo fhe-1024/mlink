@@ -1,247 +1,234 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@page language="java" pageEncoding="utf-8"%>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Basic Layout - jQuery EasyUI Demo</title>
-<link rel="stylesheet" type="text/css"
-	href="resources/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="resources/easyui/demo.css">
-<script type="text/javascript" src="resources/easyui/jquery.min.js"></script>
-<script type="text/javascript"
-	src="resources/easyui/jquery.easyui.min.js"></script>
+<meta charset="utf-8">
+<title>IDC</title>
+
+<link href="resources/web/style/common.css" rel="stylesheet" type="text/css">
+<link href="resources/web/style/index.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="resources/web/js/header.js"></script>
+<script>
+	$(function() {
+		$(".businesstypelist_b").hover(function() {
+			$(this).css('background-color', '#f4f4f4');
+		}, function() {
+			$(this).css('background-color', '');
+		})
+
+		//首页幻灯片
+		var $imgrolls = $(".bannerblock");
+		var len = $imgrolls.length;
+		var index = 0;
+		var adTimer = null;
+		$imgrolls.mouseover(function() {
+			index = $imgrolls.index(this);
+			showImg(index);
+		}).eq(0).mouseover();
+		//滑入 停止动画，滑出开始动画.
+		$('.bannerlist').hover(function() {
+			if (adTimer) {
+				clearInterval(adTimer);
+			}
+		}, function() {
+			adTimer = setInterval(function() {
+				showImg(index);
+				index++;
+				if (index == len) {
+					index = 0;
+				}
+			}, 5000);
+		}).trigger("mouseleave");
+
+	});
+
+	function showImg(index) {
+		var $bannerdot = $(".bannerdot");
+		var $rolllist = $bannerdot.find(".bannerdotblock");
+		$(".bannerlist").find(".bannerblock").eq(index).stop(true, true)
+				.fadeIn(1500).siblings().fadeOut(1000);
+		$rolllist.removeClass("active").css("opacity", "0.3").eq(index)
+				.addClass("active").css("opacity", "1");
+	}
+</script>
 </head>
+
 <body>
-	<!-- 
-	<h2>mLink</h2>
-	<div style="margin: 20px 0 10px 0;"></div>
-	 -->
-	<div class="easyui-tabs" style="width: 100%; min-height:100%;margin:0px;">
-		<div title="基本数据" style="padding: 10px">
-			<div class="easyui-layout" style="width: 100%; height: 800px;">
-				<div data-options="region:'west',split:true" title="mlink-大洲-国家-城市-节点"
-					style="width: 200px;">
-					<ul class="easyui-tree" id="tt" data-options="url:'tree/getTreeMenu',method:'get',animate:true" >
+	<!--------首页banner--------->
+	<div class="banner">
+		<!--------导航--------->
+		<div class="header headerp">
+			<div class="headermain pagewidth">
+				<div class="logo">
+					<img src="resources/web/images/logo.png">
+				</div>
+				<div class="meun">
+					<ul>
+						<li><a href="#"><span>首页</span></a></li>
+						<li><a href="#"><span>主机托管/租用</span></a>
+							<ol>
+								<li><a href="#">主机托管</a></li>
+								<li><a href="#">主机租用</a></li>
+								<li><a href="#">云主机</a></li>
+								<li><a href="#">带宽租用</a></li>
+								<li><a href="#">防DDoS攻击</a></li>
+							</ol></li>
+						<li><a href="#"><span>SDN专线</span></a></li>
+						<li><a href="#"><span>关于我们</span></a></li>
 					</ul>
 				</div>
-				
-			
-				<div
-					data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
-					<table class="easyui-datagrid" id="node_table">
-					</table>
+			</div>
+		</div>
+		<div class="bannerlist  pagewidth">
+			<div class="bannerblock bannerpic01">
+				<div class="bannerblockcontent">
+					<div class="bannertext">
+						全球网络无缝连接<br>一体化综合服务
+					</div>
 				</div>
 			</div>
-			
+			<div class="bannerblock bannerpic02">
+				<div class="bannerblockcontent">
+					<div class="bannertext">全球互联 灵活部署</div>
+				</div>
+			</div>
+			<div class="bannerblock bannerpic03" style="display: block">
+				<div class="bannerblockcontent">
+					<div class="bannertext">体验卓越 共创未来</div>
+				</div>
+			</div>
+
+
+
 		</div>
-		<div title="统计分析" style="padding: 10px"></div>
-		<div title="Help" data-options="iconCls:'icon-help',closable:true"
-			style="padding: 10px">This is the help content.
-			
+		<div class="bannerdot">
+			<div class="bannerdotblock active"></div>
+			<div class="bannerdotblock"></div>
+			<div class="bannerdotblock"></div>
+		</div>
+		<div class="intrtext">丰富的海内外顶级数据中心资源为企业网络的高速互联提供高端专业的数据传输和高速接入服务。通过一站式的综合解决方案，企业能够实现全球业务的快速扩张和稳定运作。</div>
+	</div>
+	<!------业务体系------->
+	<div class="businesstype">
+		<div class="pagewidth">
+			<h1>业务体系</h1>
+			<div class="businesstypelist">
+				<div class="businesstypelist_b">
+					<div class="businesstypelist_b_p b_b_p_icon01"></div>
+					<div class="businesstypelist_b_t">
+						<h3>主机托管</h3>
+						<div class="businesstypelist_b_t_list">
+							<em>全球节点覆盖</em> <em>按需规划定制</em> <em>设备高效部署</em>
+						</div>
+					</div>
+				</div>
+				<div class="businesstypelist_b add_w">
+					<div class="businesstypelist_b_p b_b_p_icon02"></div>
+					<div class="businesstypelist_b_t">
+						<h3>主机租用</h3>
+						<div class="businesstypelist_b_t_list">
+							<em>国内外知名设备厂商</em> <em>定制化的租用服务</em> <em>解决企业采购烦恼</em>
+						</div>
+					</div>
+				</div>
+				<div class="businesstypelist_b">
+					<div class="businesstypelist_b_p b_b_p_icon03"></div>
+					<div class="businesstypelist_b_t">
+						<h3>云主机</h3>
+						<div class="businesstypelist_b_t_list">
+							<em>即时开通</em> <em>自主操作</em> <em>按需付费</em>
+						</div>
+					</div>
+				</div>
+				<div class="businesstypelist_b">
+					<div class="businesstypelist_b_p b_b_p_icon04"></div>
+					<div class="businesstypelist_b_t">
+						<h3>带宽租用</h3>
+						<div class="businesstypelist_b_t_list">
+							<em>1.4T总带宽容量</em> <em>质优价更低</em> <em>核心骨干网多线接入</em>
+						</div>
+					</div>
+				</div>
+				<div class="businesstypelist_b add_w">
+					<div class="businesstypelist_b_p b_b_p_icon05"></div>
+					<div class="businesstypelist_b_t">
+						<h3>SDN专线</h3>
+						<div class="businesstypelist_b_t_list">
+							<em>即时开通，即用即付 </em><em>无缝连接阿里云和AWS</em> <em>低价高效，安全稳定</em>
+						</div>
+					</div>
+				</div>
+				<div class="businesstypelist_b">
+					<div class="businesstypelist_b_p b_b_p_icon06"></div>
+					<div class="businesstypelist_b_t">
+						<h3>防DDoS 攻击</h3>
+						<div class="businesstypelist_b_t_list">
+							<em>全面智能防护 </em><em>最高的准确率</em> <em>灵活部署和扩展</em>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	
-	<div id="window" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
-		 <form id="levelform">
-		 	<input type="hidden" name="levelid" value="">
-		 	<input type="hidden" name="levelname" value="">
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="名称：" name="level_name" labelPosition="top" style="width:100%;height:52px">
-        </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="排序：" name="sort" labelPosition="top" style="width:100%;height:52px">
-        </div>
-         <!-- 
-         <div id="nodetext" style="display: none;">
-         
-	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox"  label="等级资质：" name="authentication" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
-	        </div>
-        </div>
-         -->
-        <div>
-            <a onclick="addLevel();" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
-        </div>
-        </form>
+	<!--------产品优势------->
+	<div class="index_advantage">
+		<div class="pagewidth">
+			<h1>产品优势</h1>
+			<div class="index_advantage_list">
+				<div class="index_advantage_list_b">
+					<div class="index_a_l_b_icon index_a_l_b_icon01"></div>
+					<h3>更高级的数据中心</h3>
+					<div class="index_a_l_b_t">
+						全球50+顶级数据中心<br> 运营商网络中立<br> 海量带宽，高速低 价<br>
+						安全可靠、灵活部署
+					</div>
+				</div>
+				<div class="index_advantage_list_b">
+					<div class="index_a_l_b_icon index_a_l_b_icon02"></div>
+					<h3>更全面的增值服务</h3>
+					<div class="index_a_l_b_t">
+						数据备份和迁移<br> 系统管理和网络监控<br> 负载均衡和DNS解析服务<br>
+
+						常规维护和故障排除
+					</div>
+				</div>
+				<div class="index_advantage_list_b">
+					<div class="index_a_l_b_icon index_a_l_b_icon03"></div>
+					<h3>更完善的全球服务</h3>
+					<div class="index_a_l_b_t">
+						7*24小时中英文客服<br> 海内外运营中心全天驻场<br> 本地化专业服务团队
+					</div>
+				</div>
+				<div class="index_advantage_list_b">
+					<div class="index_a_l_b_icon index_a_l_b_icon04"></div>
+					<h3>强大的设备部署</h3>
+					<div class="index_a_l_b_t">
+						按需采购安装<br> 高度定制方案<br> 快速响应和配置
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
-	
-	<div id="nodewindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
-		 <form id="nodeform" enctype="multipart/form-data" accept-charset="utf-8">
-		 	<input type="hidden" name="nodeid" value="">
-		 	<input type="hidden" name="nodelevel" value="">
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="名称：" name="node_name" labelPosition="top" style="width:100%;height:52px">
-        </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="排序：" name="sort" labelPosition="top" style="width:100%;height:52px">
-        </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox"  label="总面积：" name="area" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
-        </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox"  label="服务等级协议：" name="protocol" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
-        </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox"  label="电力和冷却：" name="electricity" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
-        </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox"  label="等级资质：" name="authentication" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
-        </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-filebox" label="图片:" labelPosition="top" name="pic" data-options="prompt:'Choose a file...'" style="width:100%">
-        </div>
-        <div>
-            <a onclick="addNode();" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
-        </div>
-        </form>
+	<div class="footer">
+		<div class="pagewidth">
+			<div class="footer_b">
+				<em>友情链接：</em><a herf="#">移数通</a>
+			</div>
+			<div class="footer_b">
+				<em>备案号：</em>京ICP备10054122号-6
+			</div>
+			<div class="footer_b">
+				<em>客服热线：</em>4001053626
+			</div>
+			<div class="footer_b">
+				<em>咨询邮箱：</em>sales@mlink.cn
+			</div>
+			<div class="footer_b rightfloat">
+				<em>官网二维码：</em><img src="resources/web/images/web_qr.jpg">
+			</div>
+		</div>
 	</div>
-	
-	
-	<script type="text/javascript">
-	$(function(){
-		console.log(document.body.clientHeight);
-			
-		$("#nodewindow").window("close");
-		$("#window").window("close");
-		$("#node_table").datagrid({
-			width:document.body.clientWidth-300,
-			height:750,
-			nowrap: true,
-			autoRowHeight: false,
-			striped: true,
-			collapsible:true,
-			singleSelect : true,
-			url:'tree/getNodeList',
-			sortOrder: 'desc',
-			remoteSort: false,
-			columns:[[ 
-				{field:"name",title:"名称",width:'20%'},
-				{field:"sort",title:"排序",width:'20%'},
-				{field:"description",title:"描述",width:'60%'}
-			]],
-			pagination:true,
-			rownumbers:true,
-			toolbar:[{
-				id:'btnedt',
-				text:'添加节点',
-				iconCls:'icon-edit',
-				handler:function(){
-					var node = $('#tt').tree('getSelected');
-					if (node){
-						console.log(node.text+":"+node.id+":"+node.level);
-						if("city"!=node.level){
-							$("#window").window("open");
-							$("input[name='levelid']").val(node.id);
-							$("input[name='levelname']").val(node.level);
-						}else{
-							$("#nodewindow").window("open");
-							$("input[name='nodeid']").val(node.id);
-							$("input[name='nodelevel']").val(node.level);
-						}
-					}
-				}
-			}]
-		});
-		
-		$("#tt").tree({  
-            onClick:function(node){  
-                console.log(node.id+":"+node.level);
-                $("#node_table").datagrid("reload",{"level":node.level,"id":node.id});
-            }  
-        });  
-		
-	});
-	function addLevel(){
-		$.ajax({
-			url : 'tree/saveLevel',
-			data : $('#levelform').serialize(),
-			dataType : 'json',
-			async : false,
-			type : 'post',
-			success : function(json) {
-				if(json.result){
-					var node = $('#tt').tree('getSelected');
-					if(node){
-						$.messager.show({
-			                title:'小提示',
-			                msg:'添加成功',
-			                showType:'show'
-			            });
-						//重新加载表格
-						$("#node_table").datagrid("reload",{"level":node.level,"id":node.id});
-						//树形菜单加上
-						console.log(json.id);
-						var nodes=[{
-							"id":json.id,
-							"text":$("input[name='level_name']").val(),
-							"level":json.level
-						}];
-						$('#tt').tree('append', {
-							parent:node.target,
-							data:nodes
-						});
-						//关闭窗口
-						$("#window").window("close");
-					}
-				}else{
-					$.messager.show({
-		                title:'小提示',
-		                msg:'添加失败',
-		                showType:'show'
-		            });
-				}
-			}
-		});
-	}
-	
-	function addNode(){
-	
-		$.ajax({
-			url : 'tree/saveNode',
-			data : $('#nodeform').serialize(),
-			dataType : 'json',
-			async : false,
-			type : 'post',
-			success : function(json) {
-				if(json.result){
-					var node = $('#tt').tree('getSelected');
-					if(node){
-						$.messager.show({
-			                title:'小提示',
-			                msg:'添加成功',
-			                showType:'show'
-			            });
-						//重新加载表格
-						$("#node_table").datagrid("reload",{"level":node.level,"id":node.id});
-						//树形菜单加上
-						console.log(json.id);
-						var nodes=[{
-							"id":json.id,
-							"text":$("input[name='node_name']").val(),
-							"level":json.level
-						}];
-						$('#tt').tree('append', {
-							parent:node.target,
-							data:nodes
-						});
-						//关闭窗口
-						$("#nodewindow").window("close");
-					}
-				}else{
-					$.messager.show({
-		                title:'小提示',
-		                msg:'添加失败',
-		                showType:'show'
-		            });
-				}
-			}
-		});
-		
-	}
-	
-	</script>
 </body>
 </html>
