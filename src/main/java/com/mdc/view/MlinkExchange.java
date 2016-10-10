@@ -1,0 +1,59 @@
+package com.mdc.view;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
+public class MlinkExchange {
+	private String id;
+	private String fromcurrency;
+	private String tocurrency;
+	private double exchange;
+	private Timestamp createtime;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getFromcurrency() {
+		return fromcurrency;
+	}
+
+	public void setFromcurrency(String fromcurrency) {
+		this.fromcurrency = fromcurrency;
+	}
+
+	public String getTocurrency() {
+		return tocurrency;
+	}
+
+	public void setTocurrency(String tocurrency) {
+		this.tocurrency = tocurrency;
+	}
+
+	public double getExchange() {
+		return exchange;
+	}
+
+	public void setExchange(double exchange) {
+		this.exchange = exchange;
+	}
+
+	public Timestamp getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(Timestamp createtime) {
+		this.createtime = createtime;
+	}
+
+	@Override
+	public String toString() {
+		return "MlinkExchange [id=" + id + ", fromcurrency=" + fromcurrency + ", tocurrency=" + tocurrency
+				+ ", exchange=" + exchange + ", createtime=" + createtime + "]";
+	}
+
+}

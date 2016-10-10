@@ -24,7 +24,6 @@ public class IndexController {
 	
 	@RequestMapping("/login")
 	public String login() {
-		log.info("访问首页");
 		return "login";
 	}
 }
