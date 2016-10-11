@@ -57,8 +57,8 @@ public class CountryDaoImpl implements CountryDao {
 
 	public int save(MlinkCountry country) throws Exception {
 		// TODO Auto-generated method stub
-		int test = this.jdbctemplate.update("insert into mlink_country (id,name,sort,internationalid) values (?,?,?,?)", country.getId(),
-				country.getName(), country.getSort(),country.getInternationalid());
+		int test = this.jdbctemplate.update("insert into mlink_country (id,name,sort,internationalid) values (?,?,?,?)",
+				country.getId(), country.getName(), country.getSort(), country.getInternationalid());
 		log.info(test);
 		return test;
 	}
@@ -116,13 +116,30 @@ public class CountryDaoImpl implements CountryDao {
 
 	public int delete(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return	jdbctemplate.update("delete from mlink_country where id=?", id);
+		return jdbctemplate.update("delete from mlink_country where id=?", id);
 	}
 
 	public int update(MlinkCountry country) throws Exception {
 		// TODO Auto-generated method stub
-		return jdbctemplate.update("update mlink_country set name=? ,sort=? where id=?", country.getName(), country.getSort(),
-				country.getId());
+		return jdbctemplate.update("update mlink_country set name=? ,sort=? where id=?", country.getName(),
+				country.getSort(), country.getId());
+	}
+
+	public MlinkCountry getCountryById(String id) throws Exception {
+		// TODO Auto-generated method stub
+		MlinkCountry country = this.jdbctemplate.queryForObject(
+				"select id,name,sort from mlink_country where 1=1 and id=?", new Object[] { id },
+				new RowMapper<MlinkCountry>() {
+					public MlinkCountry mapRow(ResultSet rs, int rowNum) throws SQLException {
+						// TODO Auto-generated method stub
+						MlinkCountry actor = new MlinkCountry();
+						actor.setId(rs.getString("id"));
+						actor.setName(rs.getString("name"));
+						actor.setSort(rs.getInt("sort"));
+						return actor;
+					}
+				});
+		return country;
 	}
 
 }

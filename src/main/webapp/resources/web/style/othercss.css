@@ -20,16 +20,24 @@
 	display: block;
 	width: 500px;
 	position: absolute;
-	left: 10px;
+	left: 60px;
 	top: 80px;
 }
+.intrpage.jf{
+	top: 120px;
+}
 .intrpage h3 {
-	font-size: 32px;
+	font-size: 36px;
 	line-height: 150%;
 	text-align: left;
 	display: block;
 	font-weight: normal;
 }
+.intrpage h3 em {
+	color: #0CF;
+	font-style: normal;
+}
+
 .intrpage p {
 	font-size: 14px;
 	line-height: 150%;
@@ -139,6 +147,7 @@
 	margin-right: 10px;
 	margin-bottom: 20px;
 	margin-left: 10px;
+	background-color: #FAFAFA;
 }
 
 .detailstable th,.detailstable td{
@@ -211,3 +220,126 @@
 	line-height: 150%;
 	color: #333;
 }
+.sel_jfdiv {
+	display: block;
+	margin-left: 10px;
+	overflow: hidden;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.sel_jfdiv a {
+	background-color: #F4F4FD;
+	border: 1px solid #DBDBEA;
+	display: block;
+	float: left;
+	font-size: 14px;
+	color: #333;
+	margin-right: 15px;
+	line-height: 36px;
+	width: 100px;
+	text-align: center;
+}
+.sel_jfdiv a:hover {
+	border: 1px solid #2B6CC6;
+}
+.sel_jfdiv a.active {
+	background-color: #2B6CC6;
+	border: 1px solid #2B6CC6;
+	color: #FFF;
+}
+.jf_info {
+	display: block;
+	margin-top: 20px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+.jf_info table {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #CCC;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #CCC;
+}
+.jf_info th {
+	background-color: #F4F4FD;
+	line-height: 28px;
+}
+.jf_info th,.jf_info td{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 14px;
+	text-align: left;
+	padding-right: 10px;
+	padding-left: 10px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #CCC;
+}
+.tableicon {
+	display: block;
+	height: 28px;
+	width: 28px;
+	float: left;
+	background-image: url(../images/tableicon.png);
+	background-repeat: no-repeat;
+	margin-right: 10px;
+}
+.t_icon01 {
+	background-image: url(../images/tableicon.png);
+	background-repeat: no-repeat;
+	background-position: center 0px;
+}
+.t_icon02 {
+	background-image: url(../images/tableicon.png);
+	background-repeat: no-repeat;
+	background-position: center -50px;
+}
+.t_icon03 {
+	background-image: url(../images/tableicon.png);
+	background-repeat: no-repeat;
+	background-position: center -100px;
+}
+.t_icon04 {
+	background-image: url(../images/tableicon.png);
+	background-repeat: no-repeat;
+	background-position: center -150px;
+}.tablemark {
+	font-size: 12px;
+	color: #999;
+	display: block;
+	margin-left: 10px;
+	text-align: right;
+}
+.pagebanner {
+	background-color: #73B9FF;
+	text-align: center;
+	display: block;
+}
+.contactlist {
+	display: block;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 14px;
+	color: #333;
+	line-height: 40px;
+	overflow: hidden;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.contactblock {
+	display: block;
+	float: left;
+	width: 220px;
+	padding-left: 70px;
+	background-image: url(../images/contactcion.png);
+	background-repeat: no-repeat;
+	line-height: 60px;
+}
+.contacticon01{background-position: left top;}
+.contacticon02{background-position: left -60px;}

@@ -18,4 +18,6 @@ public interface CountryDao {
 	public int delete(String id)throws Exception;
 	
 	public int update(MlinkCountry country)throws Exception;
+	
+	public MlinkCountry getCountryById(String id)throws Exception;
 }

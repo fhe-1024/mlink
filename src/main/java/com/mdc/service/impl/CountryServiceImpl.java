@@ -52,4 +52,9 @@ public class CountryServiceImpl implements ICountryService {
 		return countryDao.update(country);
 	}
 
+	public MlinkCountry getCountryById(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return countryDao.getCountryById(id);
+	}
+
 }
