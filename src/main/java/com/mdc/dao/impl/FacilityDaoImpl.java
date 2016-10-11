@@ -117,7 +117,15 @@ public class FacilityDaoImpl implements FacilityDao {
 
 	public int delete(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return	jdbctemplate.update("delete from mlink_facility where id=?", id);
+		return jdbctemplate.update("delete from mlink_facility where id=?", id);
+	}
+
+	public int update(MlinkFacility facility) throws Exception {
+		// TODO Auto-generated method stub
+		return jdbctemplate.update(
+				"update mlink_facility set name=?,standard=?,power=?,price=?,type=?,sort=? where id=?",
+				facility.getName(), facility.getStandard(), facility.getPower(), facility.getPrice(),
+				facility.getType(), facility.getSort(), facility.getId());
 	}
 
 }

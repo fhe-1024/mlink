@@ -39,4 +39,9 @@ public class NodeServiceImpl implements INodeService {
 		return nodeDao.delete(id);
 	}
 
+	public int update(MlinkNode node) throws Exception {
+		// TODO Auto-generated method stub
+		return nodeDao.update(node);
+	}
+
 }

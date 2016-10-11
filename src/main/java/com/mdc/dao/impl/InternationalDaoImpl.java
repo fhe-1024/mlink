@@ -95,7 +95,13 @@ public class InternationalDaoImpl implements InternationalDao {
 
 	public int delete(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return	jdbctemplate.update("delete from mlink_international where id=?", id);
+		return jdbctemplate.update("delete from mlink_international where id=?", id);
+	}
+
+	public int update(MlinkInternational international) throws Exception {
+		// TODO Auto-generated method stub
+		return jdbctemplate.update("update mlink_international set name=? ,sort=? where id=?", international.getName(),
+				international.getSort(), international.getId());
 	}
 
 }

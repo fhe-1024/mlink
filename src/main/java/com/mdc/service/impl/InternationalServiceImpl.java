@@ -39,4 +39,9 @@ public class InternationalServiceImpl implements IInternationalService {
 		return internationalDao.delete(id);
 	}
 
+	public int update(MlinkInternational international) throws Exception {
+		// TODO Auto-generated method stub
+		return internationalDao.update(international);
+	}
+
 }

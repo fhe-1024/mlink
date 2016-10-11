@@ -14,4 +14,6 @@ public interface FacilityDao {
 	public void getList(PageUtil<MlinkFacility> page, Map<String, Object> map) throws Exception;
 	
 	public int delete(String id)throws Exception;
+	
+	public int update(MlinkFacility facility)throws Exception;
 }

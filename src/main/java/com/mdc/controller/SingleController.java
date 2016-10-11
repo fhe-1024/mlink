@@ -213,4 +213,40 @@ public class SingleController {
 
 	}
 
+	@RequestMapping(path = "updateSingle", method = RequestMethod.POST)
+	public void updateSingle(HttpServletRequest request, HttpServletResponse response) {
+		String single_id = request.getParameter("single_id");
+		String single_area = request.getParameter("single_area");
+		String single_protocol = request.getParameter("single_protocol");
+		String single_electricity = request.getParameter("single_electricity");
+		String single_authentication = request.getParameter("single_authentication");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			int effectrow = 0;
+			MlinkSingle single = new MlinkSingle();
+			single.setId(single_id);
+			single.setArea(single_area);
+			single.setProtocol(single_protocol);
+			single.setElectricity(single_electricity);
+			single.setAuthentication(single_authentication);
+			effectrow = singleService.update(single);
+			if (effectrow > 0) {
+				resultMap.put("result", true);
+			} else {
+				resultMap.put("result", false);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			resultMap.put("result", false);
+			log.error(e);
+		} finally {
+			try {
+				response.setContentType("application/json;charset=utf-8");
+				response.getWriter().write(new Gson().toJson(resultMap));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				log.error(e);
+			}
+		}
+	}
 }

@@ -4,7 +4,9 @@
 <head>
 <meta charset="utf-8">
 <title>IDC</title>
-
+<base
+	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+					+ request.getContextPath()%>/">
 <link href="resources/web/style/common.css" rel="stylesheet" type="text/css">
 <link href="resources/web/style/index.css" rel="stylesheet" type="text/css">
 <script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
@@ -65,10 +67,10 @@
 				</div>
 				<div class="meun">
 					<ul>
-						<li><a href="#"><span>首页</span></a></li>
+						<li><a href="#" class="active"><span>首页</span></a></li>
 						<li><a href="#"><span>主机托管/租用</span></a>
 							<ol>
-								<li><a href="#">主机托管</a></li>
+								<li><a href="wholeworld/index">主机托管</a></li>
 								<li><a href="#">主机租用</a></li>
 								<li><a href="#">云主机</a></li>
 								<li><a href="#">带宽租用</a></li>
@@ -114,7 +116,7 @@
 		<div class="pagewidth">
 			<h1>业务体系</h1>
 			<div class="businesstypelist">
-				<div class="businesstypelist_b">
+				<div class="businesstypelist_b" onclick="javascript:window.location.href='wholeworld/index'">
 					<div class="businesstypelist_b_p b_b_p_icon01"></div>
 					<div class="businesstypelist_b_t">
 						<h3>主机托管</h3>

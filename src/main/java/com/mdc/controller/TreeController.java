@@ -69,6 +69,7 @@ public class TreeController {
 					first.setId((String) internationalMap.get("id"));
 					first.setText((String) internationalMap.get("name"));
 					first.setLevel("international");
+					first.setSort((Integer) internationalMap.get("sort"));
 					nodeChildren.add(first);
 					Map<String, Object> searchCountryMap = new HashMap<String, Object>();
 					searchCountryMap.put("internationalid", internationalMap.get("id"));
@@ -82,6 +83,7 @@ public class TreeController {
 							second.setId((String) countryMap.get("id"));
 							second.setText((String) countryMap.get("name"));
 							second.setLevel("country");
+							second.setSort((Integer) countryMap.get("sort"));
 							firstChildren.add(second);
 							Map<String, Object> searchCityMap = new HashMap<String, Object>();
 							searchCityMap.put("countryid", second.getId());
@@ -95,6 +97,7 @@ public class TreeController {
 									three.setId((String) cityMap.get("id"));
 									three.setText((String) cityMap.get("name"));
 									three.setLevel("city");
+									three.setSort((Integer) cityMap.get("sort"));
 									secondChildren.add(three);
 									Map<String, Object> searchNodeMap = new HashMap<String, Object>();
 									searchNodeMap.put("cityid", cityMap.get("id"));
@@ -108,6 +111,7 @@ public class TreeController {
 											four.setId((String) nodeMap.get("id"));
 											four.setText((String) nodeMap.get("name"));
 											four.setLevel("node");
+											four.setSort((Integer) nodeMap.get("sort"));
 											threeChildren.add(four);
 										}
 									}
@@ -271,6 +275,65 @@ public class TreeController {
 
 	}
 
+	@RequestMapping(path = "updateLevel")
+	public void updateLevel(HttpServletResponse response, HttpServletRequest request) {
+		log.info("/area/saveLevel invoked");
+		String nodeid = request.getParameter("levelid");
+		String nodelevel = request.getParameter("levelname");
+		String name = request.getParameter("level_name");
+		String sort = request.getParameter("sort");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			int effectrow = 0;
+			if ("international".equals(nodelevel) || StringUtils.isBlank(nodelevel)) {
+				MlinkInternational international = new MlinkInternational();
+				international.setId(nodeid);
+				international.setName(name);
+				international.setSort(Integer.parseInt(sort));
+				effectrow = internationalService.update(international);
+			} else if ("country".equals(nodelevel)) {
+				MlinkCountry country = new MlinkCountry();
+				country.setId(nodeid);
+				country.setName(name);
+				country.setSort(Integer.parseInt(sort));
+				effectrow = countryService.update(country);
+			} else if ("city".equals(nodelevel)) {
+				MlinkCity city = new MlinkCity();
+				city.setId(nodeid);
+				city.setName(name);
+				city.setSort(Integer.parseInt(sort));
+				effectrow = cityService.update(city);
+			} else if ("node".equals(nodelevel)) {
+				MlinkNode node = new MlinkNode();
+				node.setId(nodeid);
+				node.setName(name);
+				node.setSort(Integer.parseInt(sort));
+				effectrow = nodeService.update(node);
+			}
+
+			if (effectrow > 0) {
+				resultMap.put("id", nodeid);
+				resultMap.put("level", nodelevel);
+				resultMap.put("result", true);
+			} else {
+				resultMap.put("result", false);
+			}
+
+		} catch (Exception e) {
+			resultMap.put("result", false);
+			log.error(e);
+		} finally {
+			try {
+				response.setContentType("application/json;charset=utf-8");
+				response.getWriter().write(new Gson().toJson(resultMap));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				log.error(e);
+			}
+		}
+	}
+
+	@Deprecated
 	@RequestMapping(path = "saveNode")
 	public void saveNode(@RequestParam("pic") CommonsMultipartFile file, HttpServletResponse response,
 			HttpServletRequest request) {

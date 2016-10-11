@@ -32,6 +32,9 @@
 										if("node"==node.level){
 											$("#singlewindow").window("open");
 											$("input[name='single_nodeid']").val(node.id);
+											$("#single_submit").unbind().bind().click(function(){
+												single.addSingle();
+											});
 										}else{
 											$.messager.show({
 								                title:'警告',
@@ -39,6 +42,28 @@
 								                showType:'show'
 								            });
 										}
+								}
+							}
+						},
+						{
+							id:'btnedt',
+							text:'修改节点信息',
+							iconCls:'icon-cut',
+							handler:function(){
+								var row = $('#single_table').datagrid('getSelected');
+								if(row){
+									$("#singlewindow").window("open");
+									$("input[name='single_id']").val(row.id);
+									
+									$("#single_area").textbox('setValue',row.area);
+									$("#single_protocol").textbox('setValue',row.protocol);
+									$("#single_electricity").textbox('setValue',row.electricity);
+									$("#single_authentication").textbox('setValue',row.authentication);
+									
+									$("#single_submit").unbind().bind().click(function(){
+										single.updateSingle();
+									});
+									
 								}
 							}
 						},
@@ -121,6 +146,40 @@
 							}
 						}
 					});
-			}
+			},
+			updateSingle:function(){
+				$.ajax({
+					url : 'single/updateSingle',
+					data : $('#singleform').serialize(),
+					dataType : 'json',
+					async : false,
+					type : 'post',
+					success : function(json) {
+						if(json.result){
+							var node = $('#single').tree('getSelected');
+							if(node){
+								$.messager.show({
+					                title:'小提示',
+					                msg:'修改成功',
+					                showType:'show'
+					            });
+								//重新加载表格
+								$("#single_table").datagrid("reload",{"level":node.level,"id":node.id});
+								//树形菜单加上
+								console.log(json.id);
+							
+								//关闭窗口
+								$("#singlewindow").window("close");
+							}
+						}else{
+							$.messager.show({
+				                title:'小提示',
+				                msg:'修改失败',
+				                showType:'show'
+				            });
+						}
+					}
+				});
+		}
 		};
 	}();

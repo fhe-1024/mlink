@@ -88,8 +88,8 @@ public class CityDaoImpl implements CityDao {
 
 	public int save(MlinkCity city) throws Exception {
 		// TODO Auto-generated method stub
-		int test = this.jdbctemplate.update("insert into mlink_city (id,name,sort,countryid) values (?,?,?,?)", city.getId(),
-				city.getName(), city.getSort(),city.getCountryid());
+		int test = this.jdbctemplate.update("insert into mlink_city (id,name,sort,countryid) values (?,?,?,?)",
+				city.getId(), city.getName(), city.getSort(), city.getCountryid());
 		log.info(test);
 		return test;
 	}
@@ -152,7 +152,13 @@ public class CityDaoImpl implements CityDao {
 
 	public int delete(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return	jdbctemplate.update("delete from mlink_city where id=?", id);
+		return jdbctemplate.update("delete from mlink_city where id=?", id);
+	}
+
+	public int update(MlinkCity city) throws Exception {
+		// TODO Auto-generated method stub
+		return jdbctemplate.update("update mlink_city set name=? ,sort=? where id=?", city.getName(), city.getSort(),
+				city.getId());
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.mdc.schedule;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ public class Task {
 	@Autowired
 	private IExchangeService exchangeService;
 
-	@Scheduled(cron = "0 0 * * * ? *")
+	@Scheduled(cron = "0 0 0/1 * * ?")
 	public void exchange() {
 		try {
 			String info = ExchangeUtil.get(

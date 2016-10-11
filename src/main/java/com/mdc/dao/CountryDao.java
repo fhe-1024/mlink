@@ -16,4 +16,6 @@ public interface CountryDao {
 	public void getList(PageUtil<MlinkCountry> page, Map<String, Object> map) throws Exception;
 	
 	public int delete(String id)throws Exception;
+	
+	public int update(MlinkCountry country)throws Exception;
 }

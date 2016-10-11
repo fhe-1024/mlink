@@ -44,4 +44,9 @@ public class CityServiceImpl implements ICityService {
 		return cityDao.delete(id);
 	}
 
+	public int update(MlinkCity city) throws Exception {
+		// TODO Auto-generated method stub
+		return cityDao.update(city);
+	}
+
 }

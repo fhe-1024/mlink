@@ -71,14 +71,14 @@
 		 	<input type="hidden" name="levelid" value="">
 		 	<input type="hidden" name="levelname" value="">
         <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="名称：" name="level_name" labelPosition="top" style="width:100%;height:52px">
+            <input class="easyui-textbox" label="名称：" id="level_name" name="level_name" labelPosition="top" style="width:100%;height:52px">
         </div>
         <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="排序：" name="sort" labelPosition="top" style="width:100%;height:52px">
+            <input class="easyui-textbox" label="排序：" id="sort" name="sort" labelPosition="top" style="width:100%;height:52px">
         </div>
        
         <div>
-            <a onclick="basic.addLevel();" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
+            <a id="level_submit"  class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
         </div>
         </form>
 	</div>
@@ -86,8 +86,9 @@
 	<div id="facilitywindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
 		 <form id="facilityform">
 		 	<input type="hidden" name="facility_countryid" value=""/>
+		 	<input type="hidden" name="facility_id" value=""/>
 		 	 <div style="margin-bottom:20px">
-                <select class="easyui-combobox" name="facility_type" label="类型:" labelPosition="top" style="width:100%;height: 52px;">
+                <select class="easyui-combobox" id="facility_type" name="facility_type" label="类型:" labelPosition="top" style="width:100%;height: 52px;">
                 	<option value="0">机房-托管规格-机柜功率-机柜价格</option>
                 	<option value="1">(机房)-托管规格-机柜功率-机柜价格</option>
                 	<option value="2">(机房-托管规格)-机柜功率-机柜价格</option>
@@ -95,23 +96,23 @@
             	</select>
             </div>
              <div style="margin-bottom:20px">
-	            <input class="easyui-textbox" label="排序：" name="facility_sort" labelPosition="top" style="width:100%;height:52px">
+	            <input class="easyui-textbox" label="排序：" id="facility_sort" name="facility_sort" labelPosition="top" style="width:100%;height:52px">
 	        </div>
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox" label="机房：" name="facility_name" labelPosition="top" style="width:100%;height:52px">
+	            <input class="easyui-textbox" label="机房：" id="facility_name" name="facility_name" labelPosition="top" style="width:100%;height:52px">
 	        </div>
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox"  label="托管规格：" name="facility_standard" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
+	            <input class="easyui-textbox"  label="托管规格：" id="facility_standard" name="facility_standard" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
 	        </div>
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox"  label="机柜功率：" name="facility_power" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
+	            <input class="easyui-textbox"  label="机柜功率：" id="facility_power" name="facility_power" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
 	        </div>
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox"  label="机柜价格：" name="facility_price" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
+	            <input class="easyui-textbox"  label="机柜价格：" id="facility_price" name="facility_price" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
 	        </div>
 	       
 	        <div>
-	            <a onclick="facility.addFacility();" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
+	            <a id="facility_submit" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
 	        </div>
         </form>
 	</div>
@@ -119,21 +120,22 @@
 	<div id="singlewindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
 		 <form id="singleform">
 		 	<input type="hidden" name="single_nodeid" value=""/>
+		 	<input type="hidden" name="single_id" value="">
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox" label="总面积：" name="single_area" labelPosition="top" style="width:100%;height:52px">
+	            <input class="easyui-textbox" label="总面积：" id="single_area" name="single_area" labelPosition="top" style="width:100%;height:52px">
 	        </div>
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox"  label="服务等级协议：" name="single_protocol" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
+	            <input class="easyui-textbox"  label="服务等级协议：" id="single_protocol" name="single_protocol" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
 	        </div>
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox"  label="电力和冷却：" name="single_electricity" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
+	            <input class="easyui-textbox"  label="电力和冷却：" id="single_electricity" name="single_electricity" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
 	        </div>
 	        <div style="margin-bottom:20px">
-	            <input class="easyui-textbox"  label="等级资质：" name="single_authentication" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
+	            <input class="easyui-textbox"  label="等级资质：" id="single_authentication" name="single_authentication" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
 	        </div>
 	       
 	        <div>
-	            <a onclick="single.addSingle();" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
+	            <a id="single_submit" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
 	        </div>
         </form>
 	</div>

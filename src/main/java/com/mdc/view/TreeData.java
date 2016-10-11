@@ -7,6 +7,7 @@ public class TreeData {
 	private String text;
 	private List<TreeData> children;
 	private String level;
+	private int sort;
 
 	public String getId() {
 		return id;
@@ -38,6 +39,14 @@ public class TreeData {
 
 	public void setLevel(String level) {
 		this.level = level;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 }

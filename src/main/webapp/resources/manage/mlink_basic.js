@@ -32,6 +32,9 @@
 											$("#window").window("open");
 											$("input[name='levelid']").val(node.id);
 											$("input[name='levelname']").val(node.level);
+											$("#level_submit").unbind().bind().click(function(){
+												basic.addLevel();
+											});
 										}else{
 											$.messager.show({
 								                title:'警告',
@@ -39,6 +42,26 @@
 								                showType:'show'
 								            });
 										}
+								}
+							}
+						},
+						{
+							id:'btnedt',
+							text:'修改节点',
+							iconCls:'icon-cut',
+							handler:function(){
+								var node = $('#tt').tree('getSelected');
+								if (node){
+									console.log(node.text+":"+node.id+":"+node.level);
+									$("#window").window("open");
+									$("input[name='levelid']").val(node.id);
+									$("input[name='levelname']").val(node.level);
+									$("#level_name").textbox('setValue',node.text);
+									$("#sort").textbox('setValue',node.sort);
+									
+									$("#level_submit").unbind().bind().click(function(){
+										basic.updateLevel();
+									});
 								}
 							}
 						},
@@ -134,6 +157,38 @@
 							}
 						}
 					});
+			},
+			updateLevel:function(){
+				$.ajax({
+					url : 'tree/updateLevel',
+					data : $('#levelform').serialize(),
+					dataType : 'json',
+					async : false,
+					type : 'post',
+					success : function(json) {
+						if(json.result){
+							var node = $('#tt').tree('getSelected');
+							if(node){
+								$.messager.show({
+					                title:'小提示',
+					                msg:'修改成功',
+					                showType:'show'
+					            });
+								//树形菜单加上
+								 $('#tt').tree('reload');
+								console.log(json.id);
+								//关闭窗口
+								$("#window").window("close");
+							}
+						}else{
+							$.messager.show({
+				                title:'小提示',
+				                msg:'修改失败',
+				                showType:'show'
+				            });
+						}
+					}
+				});
 			}
 		};
 	}();

@@ -114,4 +114,10 @@ public class NodeDaoImpl implements NodeDao {
 		return	jdbctemplate.update("delete from mlink_node where id=?", id);
 	}
 
+	public int update(MlinkNode node) throws Exception {
+		// TODO Auto-generated method stub
+		return jdbctemplate.update("update mlink_node set name=? ,sort=? where id=?", node.getName(),
+				node.getSort(), node.getId());
+	}
+
 }

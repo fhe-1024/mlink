@@ -16,4 +16,6 @@ public interface ICityService {
 	public void getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception;
 	
 	public int delete(String id) throws Exception;
+	
+	public int update(MlinkCity city)throws Exception;
 }

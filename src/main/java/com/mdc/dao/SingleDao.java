@@ -14,4 +14,6 @@ public interface SingleDao {
 	public void getList(PageUtil<MlinkSingle> page, Map<String, Object> map) throws Exception;
 	
 	public int delete(String id)throws Exception;
+	
+	public int update(MlinkSingle single)throws Exception;
 }

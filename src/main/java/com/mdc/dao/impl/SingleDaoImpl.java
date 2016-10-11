@@ -110,4 +110,11 @@ public class SingleDaoImpl implements SingleDao {
 		return jdbctemplate.update("delete from mlink_single where id=?", id);
 	}
 
+	public int update(MlinkSingle single) throws Exception {
+		// TODO Auto-generated method stub
+		return jdbctemplate.update(
+				"update mlink_single set area=?,protocol=?,electricity=?,authentication=? where id=?", single.getArea(),
+				single.getProtocol(), single.getElectricity(), single.getAuthentication(), single.getId());
+	}
+
 }

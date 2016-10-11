@@ -178,4 +178,45 @@ public class FacilityController {
 		}
 	}
 
+	@RequestMapping(path = "updateFacility", method = RequestMethod.POST)
+	public void updateFacility(HttpServletRequest request, HttpServletResponse response) {
+		String facility_id = request.getParameter("facility_id");
+		String facility_type = request.getParameter("facility_type");
+		String facility_sort = request.getParameter("facility_sort");
+		String facility_name = request.getParameter("facility_name");
+		String facility_standard = request.getParameter("facility_standard");
+		String facility_power = request.getParameter("facility_power");
+		String facility_price = request.getParameter("facility_price");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			int effectrow = 0;
+			MlinkFacility facility = new MlinkFacility();
+			facility.setId(facility_id);
+			facility.setName(facility_name);
+			facility.setType(Integer.parseInt(facility_type));
+			facility.setSort(Integer.parseInt(facility_sort));
+			facility.setStandard(facility_standard);
+			facility.setPower(facility_power);
+			facility.setPrice(facility_price);
+			effectrow = facilityService.update(facility);
+			if (effectrow > 0) {
+				resultMap.put("result", true);
+			} else {
+				resultMap.put("result", false);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			resultMap.put("result", false);
+			log.error(e);
+		} finally {
+			try {
+				response.setContentType("application/json;charset=utf-8");
+				response.getWriter().write(new Gson().toJson(resultMap));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				log.error(e);
+			}
+		}
+	}
+
 }

@@ -40,4 +40,9 @@ public class FacilityServiceImpl implements IFacilityService {
 		return facilityDao.delete(id);
 	}
 
+	public int update(MlinkFacility facility) throws Exception {
+		// TODO Auto-generated method stub
+		return facilityDao.update(facility);
+	}
+
 }

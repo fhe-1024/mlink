@@ -39,4 +39,9 @@ public class SingleServiceImpl implements ISingleService {
 		return singleDao.delete(id);
 	}
 
+	public int update(MlinkSingle single) throws Exception {
+		// TODO Auto-generated method stub
+		return singleDao.update(single);
+	}
+
 }

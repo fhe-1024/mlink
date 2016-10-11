@@ -44,7 +44,12 @@ public class CountryServiceImpl implements ICountryService {
 
 	public int delete(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return countryDao.delete(id);
+	}
+
+	public int update(MlinkCountry country) throws Exception {
+		// TODO Auto-generated method stub
+		return countryDao.update(country);
 	}
 
 }

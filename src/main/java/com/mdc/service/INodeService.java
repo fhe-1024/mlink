@@ -14,4 +14,6 @@ public interface INodeService {
 	public void getList(PageUtil<MlinkNode> page,Map<String, Object> map) throws Exception;
 	
 	public int delete(String id) throws Exception;
+	
+	public int update(MlinkNode node)throws Exception;
 }

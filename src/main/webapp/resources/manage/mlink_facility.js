@@ -45,6 +45,9 @@ var facility = function() {
 										if("country"==node.level){
 											$("#facilitywindow").window("open");
 											$("input[name='facility_countryid']").val(node.id);
+											$("#facility_submit").unbind().bind().click(function(){
+												facility.addFacility();
+											});
 										}else{
 											$.messager.show({
 								                title:'警告',
@@ -52,6 +55,28 @@ var facility = function() {
 								                showType:'show'
 								            });
 										}
+								}
+							}
+						},
+						{
+							id:'btnedt',
+							text:'修改详情',
+							iconCls:'icon-cut',
+							handler:function(){
+								var row = $('#facility_table').datagrid('getSelected');
+								if (row){
+									$("#facilitywindow").window("open");
+									$("input[name='facility_id']").val(row.id);
+									$('#facility_type').combobox('setValue', row.type);
+									$("#facility_sort").textbox('setValue',row.sort);
+									$("#facility_name").textbox('setValue',row.name);
+									$("#facility_standard").textbox('setValue',row.standard);
+									$("#facility_power").textbox('setValue',row.power);
+									$("#facility_price").textbox('setValue',row.price);
+									$("#facility_submit").unbind().bind().click(function(){
+										facility.updateFacility();
+									});
+									
 								}
 							}
 						},
@@ -133,6 +158,39 @@ var facility = function() {
 							}
 						}
 					});
+			},
+			updateFacility:function(){
+				$.ajax({
+					url : 'facility/updateFacility',
+					data : $('#facilityform').serialize(),
+					dataType : 'json',
+					async : false,
+					type : 'post',
+					success : function(json) {
+						if(json.result){
+							var node = $('#facility').tree('getSelected');
+							if(node){
+								$.messager.show({
+					                title:'小提示',
+					                msg:'修改成功',
+					                showType:'show'
+					            });
+								//重新加载表格
+								$("#facility_table").datagrid("reload",{"level":node.level,"id":node.id});
+								//树形菜单加上
+								console.log(json.id);
+								//关闭窗口
+								$("#facilitywindow").window("close");
+							}
+						}else{
+							$.messager.show({
+				                title:'小提示',
+				                msg:'修改失败',
+				                showType:'show'
+				            });
+						}
+					}
+				});
 			}
 	
 	
