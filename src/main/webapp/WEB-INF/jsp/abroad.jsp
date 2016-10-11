@@ -188,6 +188,14 @@
 					if(json.result){
 						console.log(json.data);
 						var facility="";
+						
+						facility+="<tr>";
+							facility+="<th scope='col'>机房</th>";
+							facility+="<th scope='col'>托管规格</th>";
+							facility+="<th scope='col'>机柜功率</th>";
+							facility+="<th scope='col'>机柜价格(元/月)</th>";
+							facility+="</tr>";
+						
 						$.each(json.data,function(i, obj) {
 							console.log(obj.type);
 							var length=obj.size;
