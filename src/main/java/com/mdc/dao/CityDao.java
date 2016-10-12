@@ -13,7 +13,7 @@ public interface CityDao {
 
 	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception;
 
-	public void getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception;
+	public List<MlinkCity> getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception;
 	
 	public int delete(String id)throws Exception;
 	

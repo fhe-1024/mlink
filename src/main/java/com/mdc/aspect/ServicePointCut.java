@@ -38,7 +38,9 @@ public class ServicePointCut {
 			log.info("参数[" + i + "]" + args[i]);
 		}
 		Object obj = joinpoint.proceed();
-		log.info("返回结果:" + obj.toString());
+		if (obj != null) {
+			log.info("返回结果:" + obj.toString());
+		}
 		log.info("↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑");
 		return obj;
 	}

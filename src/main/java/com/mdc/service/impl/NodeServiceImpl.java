@@ -29,9 +29,9 @@ public class NodeServiceImpl implements INodeService {
 		return nodeDao.getAllMapList(map);
 	}
 
-	public void getList(PageUtil<MlinkNode> page, Map<String, Object> map) throws Exception {
+	public List<MlinkNode> getList(PageUtil<MlinkNode> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		nodeDao.getList(page, map);
+		return	nodeDao.getList(page, map);
 	}
 
 	public int delete(String id) throws Exception {

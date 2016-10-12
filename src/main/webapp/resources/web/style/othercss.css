@@ -4,7 +4,7 @@
 	width: 100%;
 	background-color: #14345F;
 	text-align: right;
-	padding-top: 50px;
+	
 }
 .pageheader {
 	display: block;
@@ -24,11 +24,10 @@
 	top: 80px;
 }
 .intrpage.jf{
-	top: 120px;
+	top: 135px;
 }
 .intrpage h3 {
 	font-size: 36px;
-	line-height: 150%;
 	text-align: left;
 	display: block;
 	font-weight: normal;
@@ -223,10 +222,14 @@
 .sel_jfdiv {
 	display: block;
 	margin-left: 10px;
-	overflow: hidden;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
+.sel_jf_row {
+	display: block;
+	margin-top: 5px;
+}
+
 .sel_jfdiv a {
 	background-color: #F4F4FD;
 	border: 1px solid #DBDBEA;
@@ -238,6 +241,9 @@
 	line-height: 36px;
 	width: 100px;
 	text-align: center;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	position: relative;
 }
 .sel_jfdiv a:hover {
 	border: 1px solid #2B6CC6;
@@ -247,6 +253,38 @@
 	border: 1px solid #2B6CC6;
 	color: #FFF;
 }
+.sel_jf_row a.moresel span {
+	background-image: url(../images/moremeun.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 15px;
+}
+.localdiv {
+	width: 100%;
+	position: absolute;
+	top: 37px;
+	background-color: #F4F4FD;
+	left: -1px;
+	display: none;
+	color: #333;
+}
+.localblock {
+	width: 100%;
+	background-color: #F4F4FD;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #2B6CC6;
+	border-bottom-color: #2B6CC6;
+	border-left-color: #2B6CC6;
+	line-height: 32px;
+}
+
+.localdiv a{}
+
 .jf_info {
 	display: block;
 	margin-top: 20px;
@@ -322,7 +360,7 @@
 }
 .contactlist {
 	display: block;
-	width: 600px;
+	width: 720px;
 	margin-right: auto;
 	margin-left: auto;
 	font-size: 14px;
@@ -335,11 +373,12 @@
 .contactblock {
 	display: block;
 	float: left;
-	width: 220px;
+	width: 250px;
 	padding-left: 70px;
 	background-image: url(../images/contactcion.png);
 	background-repeat: no-repeat;
 	line-height: 60px;
+	margin-left: 30px;
 }
 .contacticon01{background-position: left top;}
 .contacticon02{background-position: left -60px;}

@@ -37,9 +37,9 @@ public class CountryServiceImpl implements ICountryService {
 		return countryDao.getAllMapList(map);
 	}
 
-	public void getList(PageUtil<MlinkCountry> page, Map<String, Object> map) throws Exception {
+	public List<MlinkCountry> getList(PageUtil<MlinkCountry> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		countryDao.getList(page, map);
+		return	countryDao.getList(page, map);
 	}
 
 	public int delete(String id) throws Exception {

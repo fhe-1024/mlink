@@ -45,7 +45,7 @@ public class NodeDaoImpl implements NodeDao {
 		int test = this.jdbctemplate.update(
 				"insert into mlink_node (id,name,sort,area,protocol,electricity,authentication,cityid) values (?,?,?,?,?,?,?,?)",
 				node.getId(), node.getName(), node.getSort(), node.getArea(), node.getProtocol(), node.getElectricity(),
-				node.getAuthentication(),node.getCityid());
+				node.getAuthentication(), node.getCityid());
 		log.info(test);
 		return test;
 	}
@@ -79,16 +79,26 @@ public class NodeDaoImpl implements NodeDao {
 		return actors;
 	}
 
-	public void getList(PageUtil<MlinkNode> page, Map<String, Object> map) throws Exception {
+	public List<MlinkNode> getList(PageUtil<MlinkNode> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		StringBuilder countsb = new StringBuilder();
 		Map<String, Object> searchMap = new HashMap<String, Object>();
+		Map<String, Object> countMap = new HashMap<String, Object>();
 		sb.append("select id,name,sort,area,protocol,electricity,authentication from mlink_node where 1=1 ");
-		sb.append("limit :start,:end ");
-		searchMap.put("start", page.getFirst());
-		searchMap.put("end", page.getPageSize());
 		countsb.append("select count(id) from mlink_node where 1=1");
+		
+		if (StringUtils.isNotBlank((String) map.get("cityid"))) {
+			sb.append("and cityid=:cityid ");
+			searchMap.put("cityid", map.get("cityid"));
+			countsb.append(" and  cityid=:cityid ");
+			countMap.put("cityid", map.get("cityid"));
+		}
+		sb.append(" order by sort ");
+		sb.append("limit :start,:end ");
+		searchMap.put("start", page.getFirst()-1);
+		searchMap.put("end", page.getPageSize());
+		
 		List<MlinkNode> actors = this.namedJdbcTemplate.query(sb.toString(), searchMap, new RowMapper<MlinkNode>() {
 			public MlinkNode mapRow(ResultSet rs, int rowNum) throws SQLException {
 				// TODO Auto-generated method stub
@@ -103,21 +113,21 @@ public class NodeDaoImpl implements NodeDao {
 				return node;
 			}
 		});
-		page.setResult(actors);
-		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), new HashMap<String, Object>(),
+		Integer total = this.namedJdbcTemplate.queryForObject(countsb.toString(), countMap,
 				Integer.class);
 		page.setTotalCount(total);
+		return actors;
 	}
 
 	public int delete(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return	jdbctemplate.update("delete from mlink_node where id=?", id);
+		return jdbctemplate.update("delete from mlink_node where id=?", id);
 	}
 
 	public int update(MlinkNode node) throws Exception {
 		// TODO Auto-generated method stub
-		return jdbctemplate.update("update mlink_node set name=? ,sort=? where id=?", node.getName(),
-				node.getSort(), node.getId());
+		return jdbctemplate.update("update mlink_node set name=? ,sort=? where id=?", node.getName(), node.getSort(),
+				node.getId());
 	}
 
 }

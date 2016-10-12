@@ -11,9 +11,9 @@ public interface FacilityDao {
 
 	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception;
 
-	public void getList(PageUtil<MlinkFacility> page, Map<String, Object> map) throws Exception;
-	
-	public int delete(String id)throws Exception;
-	
-	public int update(MlinkFacility facility)throws Exception;
+	public List<MlinkFacility> getList(PageUtil<MlinkFacility> page, Map<String, Object> map) throws Exception;
+
+	public int delete(String id) throws Exception;
+
+	public int update(MlinkFacility facility) throws Exception;
 }

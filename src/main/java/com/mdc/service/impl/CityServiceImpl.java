@@ -34,9 +34,9 @@ public class CityServiceImpl implements ICityService {
 		return cityDao.getAllMapList(map);
 	}
 
-	public void getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception {
+	public List<MlinkCity> getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		cityDao.getList(page, map);
+		return cityDao.getList(page, map);
 	}
 
 	public int delete(String id) throws Exception {

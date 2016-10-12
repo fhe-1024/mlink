@@ -32,6 +32,18 @@ public class PageUtil<T> {
 		this.setAutoCount(autoCount);
 	}
 
+	public int getPageNo() {
+		return this.pageNo;
+	}
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+		if (pageNo < 1) {
+			this.pageNo = 1;
+		}
+
+	}
+
 	public int getPageSize() {
 		return this.pageSize;
 	}
@@ -123,4 +135,11 @@ public class PageUtil<T> {
 	public int getPrePage() {
 		return this.isHasPre() ? this.pageNo - 1 : this.pageNo;
 	}
+
+	@Override
+	public String toString() {
+		return "PageUtil [pageNo=" + pageNo + ", pageSize=" + pageSize + ", orderBy=" + orderBy + ", order=" + order
+				+ ", autoCount=" + autoCount + ", result=" + result + ", totalCount=" + totalCount + "]";
+	}
+
 }

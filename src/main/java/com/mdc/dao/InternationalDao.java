@@ -11,7 +11,7 @@ public interface InternationalDao {
 
 	public List<Map<String, Object>> getAllMapList(Map<String, Object> map) throws Exception;
 
-	public void getList(PageUtil<MlinkInternational> page, Map<String, Object> map) throws Exception;
+	public List<MlinkInternational> getList(PageUtil<MlinkInternational> page, Map<String, Object> map) throws Exception;
 	
 	public int delete(String id)throws Exception;
 	

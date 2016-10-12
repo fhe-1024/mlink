@@ -19,7 +19,6 @@ import org.springframework.stereotype.Repository;
 
 import com.mdc.dao.SingleDao;
 import com.mdc.util.PageUtil;
-import com.mdc.view.MlinkNode;
 import com.mdc.view.MlinkSingle;
 
 @Repository
@@ -66,7 +65,7 @@ public class SingleDaoImpl implements SingleDao {
 						Map<String, Object> map = new HashMap<String, Object>();
 						map.put("id", rs.getString("id"));
 						map.put("area", rs.getString("area"));
-						map.put("protocol", rs.getInt("protocol"));
+						map.put("protocol", rs.getString("protocol"));
 						map.put("electricity", rs.getString("electricity"));
 						map.put("authentication", rs.getString("authentication"));
 						map.put("nodeid", rs.getString("nodeid"));
@@ -76,16 +75,25 @@ public class SingleDaoImpl implements SingleDao {
 		return actors;
 	}
 
-	public void getList(PageUtil<MlinkSingle> page, Map<String, Object> map) throws Exception {
+	public List<MlinkSingle> getList(PageUtil<MlinkSingle> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		StringBuilder countsb = new StringBuilder();
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		sb.append("select id,area,protocol,electricity,authentication,nodeid from mlink_single where 1=1 ");
-		sb.append("limit :start,:end ");
-		searchMap.put("start", page.getFirst());
-		searchMap.put("end", page.getPageSize());
 		countsb.append("select count(id) from mlink_single where 1=1");
+
+		Map<String, Object> countMap = new HashMap<String, Object>();
+		if (StringUtils.isNotBlank((String) map.get("nodeid"))) {
+			sb.append("and nodeid=:nodeid ");
+			searchMap.put("nodeid", map.get("nodeid"));
+			countsb.append(" and  nodeid=:nodeid ");
+			countMap.put("nodeid", map.get("nodeid"));
+		}
+		sb.append("limit :start,:end ");
+		searchMap.put("start", page.getFirst() - 1);
+		searchMap.put("end", page.getPageSize());
+
 		List<MlinkSingle> actors = this.namedJdbcTemplate.query(sb.toString(), searchMap, new RowMapper<MlinkSingle>() {
 			public MlinkSingle mapRow(ResultSet rs, int rowNum) throws SQLException {
 				// TODO Auto-generated method stub
@@ -99,10 +107,9 @@ public class SingleDaoImpl implements SingleDao {
 				return single;
 			}
 		});
-		page.setResult(actors);
-		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), new HashMap<String, Object>(),
-				Integer.class);
+		Integer total = this.namedJdbcTemplate.queryForObject(countsb.toString(), countMap, Integer.class);
 		page.setTotalCount(total);
+		return actors;
 	}
 
 	public int delete(String id) throws Exception {
@@ -115,6 +122,25 @@ public class SingleDaoImpl implements SingleDao {
 		return jdbctemplate.update(
 				"update mlink_single set area=?,protocol=?,electricity=?,authentication=? where id=?", single.getArea(),
 				single.getProtocol(), single.getElectricity(), single.getAuthentication(), single.getId());
+	}
+
+	public MlinkSingle getSingleByNodeId(String nodeid) throws Exception {
+		// TODO Auto-generated method stub
+		MlinkSingle single = this.jdbctemplate.queryForObject(
+				"select id,area,protocol,electricity,authentication from mlink_single where 1=1 and nodeid=?",
+				new Object[] { nodeid }, new RowMapper<MlinkSingle>() {
+					public MlinkSingle mapRow(ResultSet rs, int rowNum) throws SQLException {
+						// TODO Auto-generated method stub
+						MlinkSingle actor = new MlinkSingle();
+						actor.setId(rs.getString("id"));
+						actor.setArea(rs.getString("area"));
+						actor.setProtocol(rs.getString("protocol"));
+						actor.setElectricity(rs.getString("electricity"));
+						actor.setAuthentication(rs.getString("authentication"));
+						return actor;
+					}
+				});
+		return single;
 	}
 
 }

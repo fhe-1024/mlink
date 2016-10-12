@@ -30,9 +30,9 @@ public class FacilityServiceImpl implements IFacilityService {
 		return facilityDao.getAllMapList(map);
 	}
 
-	public void getList(PageUtil<MlinkFacility> page, Map<String, Object> map) throws Exception {
+	public List<MlinkFacility> getList(PageUtil<MlinkFacility> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		facilityDao.getList(page, map);
+		return	facilityDao.getList(page, map);
 	}
 
 	public int delete(String id) throws Exception {

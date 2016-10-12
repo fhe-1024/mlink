@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.mdc.service.ICountryService;
 import com.mdc.service.IFacilityService;
 import com.mdc.service.IInternationalService;
+import com.mdc.util.PageUtil;
 import com.mdc.view.MlinkFacility;
 import com.mdc.view.TreeData;
 
@@ -88,19 +89,21 @@ public class FacilityController {
 
 	@RequestMapping(path = "getFacilityList")
 	public void getFacilityList(HttpServletRequest request, HttpServletResponse response) {
-		String page = request.getParameter("page");
+		String pagesize = request.getParameter("page");
 		String rows = request.getParameter("rows");
 		String level = request.getParameter("level");
 		String id = request.getParameter("id");
 		try {
-			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+			PageUtil<MlinkFacility> page = new PageUtil<MlinkFacility>(Integer.parseInt(rows));
+			page.setPageNo(Integer.parseInt(pagesize));
+			List<MlinkFacility> list = new ArrayList<MlinkFacility>();
 			Map<String, Object> argsMap = new HashMap<String, Object>();
 			if ("country".equals(level)) {
 				argsMap.put("countryid", id);
-				list = facilityService.getAllMapList(argsMap);
+				list = facilityService.getList(page, argsMap);
 			}
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("total", 100);
+			map.put("total", page.getTotalCount());
 			map.put("rows", list);
 			response.setContentType("application/json;charset=utf-8");
 			response.getWriter().write(new Gson().toJson(map));

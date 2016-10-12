@@ -66,14 +66,16 @@ public class InternationalDaoImpl implements InternationalDao {
 		return actors;
 	}
 
-	public void getList(PageUtil<MlinkInternational> page, Map<String, Object> map) throws Exception {
+	public List<MlinkInternational> getList(PageUtil<MlinkInternational> page, Map<String, Object> map)
+			throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		StringBuilder countsb = new StringBuilder();
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		sb.append("select id,name,sort from mlink_international where 1=1 ");
+		sb.append(" order by sort ");
 		sb.append("limit :start,:end ");
-		searchMap.put("start", page.getFirst());
+		searchMap.put("start", page.getFirst() - 1);
 		searchMap.put("end", page.getPageSize());
 		countsb.append("select count(id) from mlink_international where 1=1");
 		List<MlinkInternational> actors = this.namedJdbcTemplate.query(sb.toString(), searchMap,
@@ -87,10 +89,10 @@ public class InternationalDaoImpl implements InternationalDao {
 						return country;
 					}
 				});
-		page.setResult(actors);
-		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), new HashMap<String, Object>(),
+		Integer total = this.namedJdbcTemplate.queryForObject(countsb.toString(), new HashMap<String, Object>(),
 				Integer.class);
 		page.setTotalCount(total);
+		return actors;
 	}
 
 	public int delete(String id) throws Exception {

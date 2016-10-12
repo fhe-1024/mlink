@@ -76,7 +76,7 @@ public class FacilityDaoImpl implements FacilityDao {
 		return actors;
 	}
 
-	public void getList(PageUtil<MlinkFacility> page, Map<String, Object> map) throws Exception {
+	public List<MlinkFacility> getList(PageUtil<MlinkFacility> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		StringBuilder countsb = new StringBuilder();
@@ -90,8 +90,9 @@ public class FacilityDaoImpl implements FacilityDao {
 			countsb.append(" and  countryid=:countryid ");
 			countMap.put("countryid", map.get("countryid"));
 		}
+		sb.append(" order by sort ");
 		sb.append("limit :start,:end ");
-		searchMap.put("start", page.getFirst());
+		searchMap.put("start", page.getFirst() - 1);
 		searchMap.put("end", page.getPageSize());
 		List<MlinkFacility> actors = this.namedJdbcTemplate.query(sb.toString(), searchMap,
 				new RowMapper<MlinkFacility>() {
@@ -110,9 +111,9 @@ public class FacilityDaoImpl implements FacilityDao {
 					}
 				});
 		page.setResult(actors);
-		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), new HashMap<String, Object>(),
-				Integer.class);
+		Integer total = this.namedJdbcTemplate.queryForObject(countsb.toString(), countMap, Integer.class);
 		page.setTotalCount(total);
+		return actors;
 	}
 
 	public int delete(String id) throws Exception {

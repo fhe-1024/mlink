@@ -29,9 +29,9 @@ public class InternationalServiceImpl implements IInternationalService {
 		return internationalDao.getAllMapList(map);
 	}
 
-	public void getList(PageUtil<MlinkInternational> page, Map<String, Object> map) throws Exception {
+	public List<MlinkInternational> getList(PageUtil<MlinkInternational> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		internationalDao.getList(page, map);
+		return internationalDao.getList(page, map);
 	}
 
 	public int delete(String id) throws Exception {

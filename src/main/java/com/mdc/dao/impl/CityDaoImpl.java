@@ -118,22 +118,23 @@ public class CityDaoImpl implements CityDao {
 		return actors;
 	}
 
-	public void getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception {
+	public List<MlinkCity> getList(PageUtil<MlinkCity> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		StringBuilder countsb = new StringBuilder();
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		Map<String, Object> countMap = new HashMap<String, Object>();
 		sb.append("select id,name,sort from mlink_city where 1=1 ");
-		countsb.append("select count(id) from mlink_city where 1=1");
+		countsb.append("select count(id) from mlink_city where 1=1 ");
 		if (StringUtils.isNotBlank((String) map.get("countryid"))) {
 			sb.append("and countryid=:countryid ");
 			searchMap.put("countryid", map.get("countryid"));
 			countsb.append(" and  countryid=:countryid ");
 			countMap.put("countryid", map.get("countryid"));
 		}
-		sb.append("limit :start,:end ");
-		searchMap.put("start", page.getFirst());
+		sb.append(" order by sort ");
+		sb.append(" limit :start,:end ");
+		searchMap.put("start", page.getFirst() - 1);
 		searchMap.put("end", page.getPageSize());
 		List<MlinkCity> actors = this.namedJdbcTemplate.query(sb.toString(), searchMap, new RowMapper<MlinkCity>() {
 			public MlinkCity mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -145,9 +146,9 @@ public class CityDaoImpl implements CityDao {
 				return city;
 			}
 		});
-		page.setResult(actors);
-		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), countMap, Integer.class);
+		Integer total = this.namedJdbcTemplate.queryForObject(countsb.toString(), countMap, Integer.class);
 		page.setTotalCount(total);
+		return actors;
 	}
 
 	public int delete(String id) throws Exception {

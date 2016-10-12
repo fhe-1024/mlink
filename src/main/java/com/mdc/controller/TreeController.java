@@ -136,29 +136,38 @@ public class TreeController {
 	}
 
 	@RequestMapping(path = "getNodeList")
+	@SuppressWarnings(value = {"unchecked" })
 	public void getNodeList(HttpServletResponse response, HttpServletRequest request) {
-		log.info("/area/getNodeList invoked");
-		String page = request.getParameter("page");
+		String pagesize = request.getParameter("page");
 		String rows = request.getParameter("rows");
 		String level = request.getParameter("level");
 		String id = request.getParameter("id");
 		try {
-			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+			PageUtil<?> page = null;
+			List<?> list = new ArrayList<Object>();
 			Map<String, Object> argsMap = new HashMap<String, Object>();
 			if ("mlink".equals(level) || StringUtils.isBlank(level)) {
-				list = internationalService.getAllMapList(new HashMap<String, Object>());
+				page = new PageUtil<MlinkInternational>(Integer.parseInt(rows));
+				page.setPageNo(Integer.parseInt(pagesize));
+				list = internationalService.getList((PageUtil<MlinkInternational>) page, argsMap);
 			} else if ("international".equals(level)) {
 				argsMap.put("internationalid", id);
-				list = countryService.getAllMapList(argsMap);
+				page = new PageUtil<MlinkCountry>(Integer.parseInt(rows));
+				page.setPageNo(Integer.parseInt(pagesize));
+				list = countryService.getList((PageUtil<MlinkCountry>) page, argsMap);
 			} else if ("country".equals(level)) {
 				argsMap.put("countryid", id);
-				list = cityService.getAllMapList(argsMap);
+				page = new PageUtil<MlinkCity>(Integer.parseInt(rows));
+				page.setPageNo(Integer.parseInt(pagesize));
+				list = cityService.getList((PageUtil<MlinkCity>) page, argsMap);
 			} else if ("city".equals(level)) {
 				argsMap.put("cityid", id);
-				list = nodeService.getAllMapList(argsMap);
+				page = new PageUtil<MlinkNode>(Integer.parseInt(rows));
+				page.setPageNo(Integer.parseInt(pagesize));
+				list = nodeService.getList((PageUtil<MlinkNode>) page, argsMap);
 			}
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("total", 100);
+			map.put("total", page.getTotalCount());
 			map.put("rows", list);
 			response.setContentType("application/json;charset=utf-8");
 			response.getWriter().write(new Gson().toJson(map));

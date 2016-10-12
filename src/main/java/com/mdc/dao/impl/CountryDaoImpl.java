@@ -87,16 +87,26 @@ public class CountryDaoImpl implements CountryDao {
 		return actors;
 	}
 
-	public void getList(PageUtil<MlinkCountry> page, Map<String, Object> map) throws Exception {
+	public List<MlinkCountry> getList(PageUtil<MlinkCountry> page, Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		StringBuilder countsb = new StringBuilder();
-		Map<String, Object> searchMap = new HashMap<String, Object>();
-		sb.append("select id,name,sort from mlink_country where 1=1 ");
-		sb.append("limit :start,:end ");
-		searchMap.put("start", page.getFirst());
-		searchMap.put("end", page.getPageSize());
 		countsb.append("select count(id) from mlink_country where 1=1");
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		Map<String, Object> countMap = new HashMap<String, Object>();
+		sb.append("select id,name,sort from mlink_country where 1=1 ");
+
+		if (StringUtils.isNotBlank((String) map.get("internationalid"))) {
+			sb.append("and internationalid=:internationalid ");
+			searchMap.put("internationalid", map.get("internationalid"));
+			countsb.append(" and  internationalid=:internationalid ");
+			countMap.put("internationalid", map.get("internationalid"));
+		}
+		sb.append(" order by sort ");
+		sb.append("limit :start,:end ");
+		searchMap.put("start", page.getFirst() - 1);
+		searchMap.put("end", page.getPageSize());
+		
 		List<MlinkCountry> actors = this.namedJdbcTemplate.query(sb.toString(), searchMap,
 				new RowMapper<MlinkCountry>() {
 					public MlinkCountry mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -108,10 +118,9 @@ public class CountryDaoImpl implements CountryDao {
 						return country;
 					}
 				});
-		page.setResult(actors);
-		Integer total = this.namedJdbcTemplate.queryForObject(sb.toString(), new HashMap<String, Object>(),
-				Integer.class);
+		Integer total = this.namedJdbcTemplate.queryForObject(countsb.toString(), countMap, Integer.class);
 		page.setTotalCount(total);
+		return actors;
 	}
 
 	public int delete(String id) throws Exception {

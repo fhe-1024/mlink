@@ -24,6 +24,7 @@ import com.mdc.service.ICountryService;
 import com.mdc.service.IInternationalService;
 import com.mdc.service.INodeService;
 import com.mdc.service.ISingleService;
+import com.mdc.util.PageUtil;
 import com.mdc.view.MlinkFacility;
 import com.mdc.view.MlinkSingle;
 import com.mdc.view.TreeData;
@@ -126,19 +127,21 @@ public class SingleController {
 
 	@RequestMapping(path = "getSingleList")
 	public void getSingleList(HttpServletRequest request, HttpServletResponse response) {
-		String page = request.getParameter("page");
+		String pagesize = request.getParameter("page");
 		String rows = request.getParameter("rows");
 		String level = request.getParameter("level");
 		String id = request.getParameter("id");
 		try {
-			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+			PageUtil<MlinkSingle> page = new PageUtil<MlinkSingle>(Integer.parseInt(rows));
+			page.setPageNo(Integer.parseInt(pagesize));
+			List<MlinkSingle> list = new ArrayList<MlinkSingle>();
 			Map<String, Object> argsMap = new HashMap<String, Object>();
 			if ("node".equals(level)) {
 				argsMap.put("nodeid", id);
-				list = singleService.getAllMapList(argsMap);
+				list = singleService.getList(page, argsMap);
 			}
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("total", 100);
+			map.put("total", page.getTotalCount());
 			map.put("rows", list);
 			response.setContentType("application/json;charset=utf-8");
 			response.getWriter().write(new Gson().toJson(map));
