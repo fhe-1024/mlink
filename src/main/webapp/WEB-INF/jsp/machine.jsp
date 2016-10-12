@@ -58,23 +58,25 @@
 
 			<div class="sel_jfdiv">
 				<div class="sel_jf_row" id="machine">
-					<a class="active" href="#">北京</a> <a href="#">成都</a><a href="#">重庆</a>
+					<a href="#" class="moresel"><span>香港01</span>
+						<div class="localdiv">
+							<div class="localblock">香港01</div>
+							<div class="localblock">香港02</div>
+						</div></a><a class="active" href="#">北京</a> <a href="#">成都</a><a href="#">重庆</a>
 					<a href="#">佛山</a><a href="#">广州</a><a href="#">济南</a> <a href="#">
 						南京</a> <a href="#"> 上海</a> <a href="#"> 沈阳</a> <a href="#">石家庄</a> <a
 						href="#"> 天津</a> <a href="#"> 温州</a> <a href="#"> 武汉</a> <a
 						href="#"> 无锡</a> <a href="#">西安</a> <a href="#"> 珠海</a>
 					<div class="clearfloat"></div>
 				</div>
-				<!-- 
 				<div class="sel_jf_row">
 					<a href="#" class="moresel"><span>香港01</span>
 						<div class="localdiv">
-							<div class="localblock" onclick="alert();">香港01</div>
+							<div class="localblock">香港01</div>
 							<div class="localblock">香港02</div>
 						</div></a> <a href="#">台湾</a>
 				</div>
 				<div class="clearfloat"></div>
-				 -->
 			</div>
 			<div class="jf_info">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -277,21 +279,16 @@
 									if(obj.size==1){
 										$.each(obj.node,function(j, obj) {
 											console.log(obj.name);
-											machinehtml+="<a href='#' onclick='machine.initsingle(\""+obj.id+"\")'>"+obj.name+"</a>";
+											machinehtml+="<a href='#' id='"+obj.id+"'>"+obj.name+"</a>";
 										}); 
 									}else if(obj.size>1){
 										$.each(obj.node,function(j, obj) {
 											console.log(obj.name);
 											if(j==0){
-												if(i==0){
-													machinehtml+="<a href='#' class='moresel active'><span>"+obj.name+"</span>";
-													machine.initsingle(""+obj.id+"")
-												}else{
-													machinehtml+="<a href='#' class='moresel'><span>"+obj.name+"</span>";
-												}	
+												machinehtml+="<a href='#' class='moresel' id='"+obj.id+"'><span>"+obj.name+"</span>";
 												machinehtml+="<div class='localdiv'>";
 											}
-											machinehtml+="<div class='localblock' onclick='machine.initsingle(\""+obj.id+"\")'>"+obj.name+"</div>";
+											machinehtml+="<div class='localblock' id='"+obj.id+"'>"+obj.name+"</div>";
 										}); 
 										machinehtml+="</div></a>";
 									}
@@ -321,12 +318,8 @@
 			}
 				 
 			};
-		}();
-	$(function(){
-		machine.inittable();
-		machine.initmachine();
-		machine.initsingle('f3280b9c-e6e8-4290-a5c6-ad33f3b4ccdc');
-	});	
+		}();	
+	
 	</script>
 </body>
 </html>

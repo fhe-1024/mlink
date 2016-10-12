@@ -18,13 +18,13 @@
 .intrpage {
 	color: #FFF;
 	display: block;
-	width: 500px;
+	width: 580px;
 	position: absolute;
 	left: 60px;
 	top: 80px;
 }
 .intrpage.jf{
-	top: 135px;
+	top: 120px;
 }
 .intrpage h3 {
 	font-size: 36px;
@@ -40,13 +40,13 @@
 .intrpage p {
 	font-size: 14px;
 	line-height: 150%;
-	margin-top: 10px;
 	text-align: left;
+	margin-top: 5px;
 }
 .rowblock {
 	display: block;
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 .graybg{
 	background-color: #F7F7F7;
@@ -56,6 +56,7 @@
 	display: block;
 	margin-left: 10px;
 	line-height: 150%;
+	font-weight: normal;
 }
 .pagewidth .h_txt {
 	font-size: 14px;
@@ -267,6 +268,7 @@
 	left: -1px;
 	display: none;
 	color: #333;
+	z-index: 99;
 }
 .localblock {
 	width: 100%;
@@ -382,3 +384,91 @@
 }
 .contacticon01{background-position: left top;}
 .contacticon02{background-position: left -60px;}
+.renthostdiv {
+	width: 1200px;
+	overflow: hidden;
+}
+
+.renthostblock {
+	display: block;
+	float: left;
+	width: 370px;
+	position: relative;
+	background-color: #CCC;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+.renthostblock img {
+	height: auto;
+	width: 100%;
+}
+
+.renthostblock h5 {
+	font-size: 16px;
+	line-height: 40px;
+	color: #FFF;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.7);
+	display: block;
+	width: 100%;
+	font-weight: 500;
+}
+.crentservicelist,.dfunctionlist {
+	display: block;
+	overflow: hidden;
+	margin-top: 15px;
+}
+.crentserviceblock,.dfunctionlistblock {
+	display: block;
+	float: left;
+	width: 200px;
+	text-align: center;
+}
+.crentserviceblock h5,.dfunctionlistblock h5 {
+	font-weight: normal;
+	font-size: 14px;
+}
+
+.crentserviceicon {
+	background-image: url(../images/crentseviceicon.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 70px;
+	width: 70px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.dfunctionicon {
+	background-image: url(../images/DDOSicon.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 70px;
+	width: 70px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.csicon01,.dficon01 {
+	background-position: center top;
+}
+.csicon02,.dficon02 {
+	background-position: center -100px;
+}
+.csicon03,.dficon03 {
+	background-position: center -200px;
+}
+.csicon04,.dficon04 {
+	background-position: center -300px;
+}
+.csicon05,.dficon05 {
+	background-position: center -400px;
+}
+.csicon06,.dficon06 {
+	background-position: center -500px;
+}
