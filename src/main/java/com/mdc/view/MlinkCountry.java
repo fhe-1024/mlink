@@ -6,6 +6,8 @@ public class MlinkCountry {
 	private int sort;
 	private String internationalid;
 
+	private int flag;
+
 	public String getId() {
 		return id;
 	}
@@ -38,12 +40,18 @@ public class MlinkCountry {
 		this.internationalid = internationalid;
 	}
 
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
 	@Override
 	public String toString() {
 		return "MlinkCountry [id=" + id + ", name=" + name + ", sort=" + sort + ", internationalid=" + internationalid
-				+ "]";
+				+ ", flag=" + flag + "]";
 	}
-	
-	
-	
+
 }

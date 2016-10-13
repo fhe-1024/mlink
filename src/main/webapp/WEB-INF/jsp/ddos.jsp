@@ -18,28 +18,7 @@
 
 <body>
 	<div class="pageheader">
-		<div class="header">
-			<div class="headermain pagewidth">
-				<div class="logo">
-					<img src="resources/web/images/logo.png">
-				</div>
-				<div class="meun">
-					<ul>
-						<li><a href="#"><span>首页</span></a></li>
-						<li><a href="#"><span>主机托管/租用</span></a>
-							<ol>
-								<li><a href="#">主机托管</a></li>
-								<li><a href="#">主机租用</a></li>
-								<li><a href="#">云主机</a></li>
-								<li><a href="#">带宽租用</a></li>
-								<li><a href="#">防DDoS攻击</a></li>
-							</ol></li>
-						<li><a href="#"><span>SDN专线</span></a></li>
-						<li><a href="#"><span>关于我们</span></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<%@include file="head.jsp" %>
 		<div class="wholeworldbanner">
 			<div class="pagewidth pic_p">
 				<img src="resources/web/images/dospic.jpg">
@@ -79,31 +58,31 @@
 			<div class="dfunctionlist">
 				<div class="dfunctionlistblock">
 					<div class="dfunctionicon dficon01"></div>
-					<h5>SSD硬盘选择</h5>
+					<h5>完善的DDoS攻击防护类型</h5>
 				</div>
 				<div class="crentserviceblock">
 					<div class="dfunctionicon dficon02"></div>
-					<h5>负载均衡</h5>
+					<h5>高防DDoS</h5>
 				</div>
 
 				<div class="crentserviceblock">
 					<div class="dfunctionicon dficon03"></div>
-					<h5>防火墙</h5>
+					<h5>迅速的响应时间</h5>
 				</div>
 
 				<div class="crentserviceblock">
 					<div class="dfunctionicon dficon04"></div>
-					<h5>BGP多线接入</h5>
+					<h5>最高的准确率</h5>
 				</div>
 
 				<div class="crentserviceblock">
 					<div class="dfunctionicon dficon05"></div>
-					<h5>海内外资源</h5>
+					<h5>攻击日志及流量图表</h5>
 				</div>
 
 				<div class="crentserviceblock">
 					<div class="dfunctionicon dficon06"></div>
-					<h5>全面安全防护</h5>
+					<h5>7*24小时售后</h5>
 				</div>
 
 			</div>
@@ -119,24 +98,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="footer">
-		<div class="pagewidth">
-			<div class="footer_b">
-				<em>友情链接：</em><a herf="#">移数通</a>
-			</div>
-			<div class="footer_b">
-				<em>备案号：</em>京ICP备10054122号-6
-			</div>
-			<div class="footer_b">
-				<em>客服热线：</em>4001053626
-			</div>
-			<div class="footer_b">
-				<em>咨询邮箱：</em>sales@mlink.cn
-			</div>
-			<div class="footer_b rightfloat">
-				<em>官网二维码：</em><img src="resources/web/images/web_qr.jpg">
-			</div>
-		</div>
-	</div>
+	<%@include file="foot.jsp" %>
 </body>
 </html>

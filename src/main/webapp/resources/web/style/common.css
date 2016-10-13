@@ -27,7 +27,15 @@ button,input,select,textarea{outline: none;resize: none;}.clearfloat {
 	width: 1200px;
 	margin-right: auto;
 	margin-left: auto;
+	position: relative;
 }
+.pagetext {
+	font-size: 14px;
+	width: 340px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
 
 .header {
 	display: block;

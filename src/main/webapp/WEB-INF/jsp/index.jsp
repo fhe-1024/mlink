@@ -7,8 +7,10 @@
 <base
 	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath()%>/">
-<link href="resources/web/style/common.css" rel="stylesheet" type="text/css">
-<link href="resources/web/style/index.css" rel="stylesheet" type="text/css">
+<link href="resources/web/style/common.css" rel="stylesheet"
+	type="text/css">
+<link href="resources/web/style/index.css" rel="stylesheet"
+	type="text/css">
 <script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
 <script language="javascript" src="resources/web/js/header.js"></script>
 <script>
@@ -60,28 +62,7 @@
 	<!--------首页banner--------->
 	<div class="banner">
 		<!--------导航--------->
-		<div class="header headerp">
-			<div class="headermain pagewidth">
-				<div class="logo">
-					<img src="resources/web/images/logo.png">
-				</div>
-				<div class="meun">
-					<ul>
-						<li><a href="#" class="active"><span>首页</span></a></li>
-						<li><a href="#"><span>主机托管/租用</span></a>
-							<ol>
-								<li><a href="wholeworld/index">主机托管</a></li>
-								<li><a href="#">主机租用</a></li>
-								<li><a href="#">云主机</a></li>
-								<li><a href="#">带宽租用</a></li>
-								<li><a href="#">防DDoS攻击</a></li>
-							</ol></li>
-						<li><a href="#"><span>SDN专线</span></a></li>
-						<li><a href="#"><span>关于我们</span></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<%@include file="head.jsp"%>
 		<div class="bannerlist  pagewidth">
 			<div class="bannerblock bannerpic01">
 				<div class="bannerblockcontent">
@@ -116,7 +97,7 @@
 		<div class="pagewidth">
 			<h1>业务体系</h1>
 			<div class="businesstypelist">
-				<div class="businesstypelist_b" onclick="javascript:window.location.href='wholeworld/index'">
+				<div class="businesstypelist_b">
 					<div class="businesstypelist_b_p b_b_p_icon01"></div>
 					<div class="businesstypelist_b_t">
 						<h3>主机托管</h3>
@@ -213,24 +194,6 @@
 
 		</div>
 	</div>
-	<div class="footer">
-		<div class="pagewidth">
-			<div class="footer_b">
-				<em>友情链接：</em><a herf="#">移数通</a>
-			</div>
-			<div class="footer_b">
-				<em>备案号：</em>京ICP备10054122号-6
-			</div>
-			<div class="footer_b">
-				<em>客服热线：</em>4001053626
-			</div>
-			<div class="footer_b">
-				<em>咨询邮箱：</em>sales@mlink.cn
-			</div>
-			<div class="footer_b rightfloat">
-				<em>官网二维码：</em><img src="resources/web/images/web_qr.jpg">
-			</div>
-		</div>
-	</div>
+	<%@include file="foot.jsp"%>
 </body>
 </html>

@@ -44,8 +44,9 @@ public class MachineController {
 
 	@RequestMapping(path = "/index/{countryid}")
 	public String index(@PathVariable String countryid, HttpServletRequest request) {
+		MlinkCountry country = new MlinkCountry();
 		try {
-			MlinkCountry country = countryService.getCountryById(countryid);
+			country = countryService.getCountryById(countryid);
 			if (country != null) {
 				request.setAttribute("countryname", country.getName());
 			}
@@ -54,7 +55,11 @@ public class MachineController {
 			log.error(e);
 		}
 		request.setAttribute("countryid", countryid);
-		return "machine";
+		if (1 == country.getFlag()) {
+			return "machine_china";
+		} else {
+			return "machine";
+		}
 	}
 
 	@RequestMapping(path = "/getFacilityList")

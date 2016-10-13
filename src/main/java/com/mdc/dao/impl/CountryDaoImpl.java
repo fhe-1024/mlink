@@ -137,7 +137,7 @@ public class CountryDaoImpl implements CountryDao {
 	public MlinkCountry getCountryById(String id) throws Exception {
 		// TODO Auto-generated method stub
 		MlinkCountry country = this.jdbctemplate.queryForObject(
-				"select id,name,sort from mlink_country where 1=1 and id=?", new Object[] { id },
+				"select id,name,sort,flag from mlink_country where 1=1 and id=?", new Object[] { id },
 				new RowMapper<MlinkCountry>() {
 					public MlinkCountry mapRow(ResultSet rs, int rowNum) throws SQLException {
 						// TODO Auto-generated method stub
@@ -145,6 +145,7 @@ public class CountryDaoImpl implements CountryDao {
 						actor.setId(rs.getString("id"));
 						actor.setName(rs.getString("name"));
 						actor.setSort(rs.getInt("sort"));
+						actor.setFlag(rs.getInt("flag"));
 						return actor;
 					}
 				});

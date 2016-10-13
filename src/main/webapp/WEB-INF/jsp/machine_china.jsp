@@ -21,11 +21,12 @@
 		<%@include file="head.jsp" %>
 		<div class="wholeworldbanner">
 			<div class="pagewidth pic_p">
-				<img src="resources/web/images/abroadpic.jpg">
+				<img src="resources/web/images/abroadpic02.jpg">
 				<div class="intrpage jf">
 					<h3>
 						<em><%=request.getAttribute("countryname") %></em> 机房托管服务
 					</h3>
+					<p>20+顶级数据中心，800Gbps</p>
 				</div>
 			</div>
 		</div>
@@ -271,7 +272,7 @@
 						success : function(json) {
 							console.log(json);
 							if(json.result){
-								$("#singleentity").html("<td>"+json.single.area+"</td><td>"+json.single.protocol+"</td><td>"+json.single.electricity+"</td><td>"+json.single.authentication+"</td>");
+								$("#singleentity").html("<td>"+json.single.area.replace(new RegExp("\r\n","gm"),"<br>")+"</td><td>"+json.single.protocol.replace(new RegExp("\r\n","gm"),"<br>")+"</td><td>"+json.single.electricity.replace(new RegExp("\r\n","gm"),"<br>")+"</td><td>"+json.single.authentication.replace(new RegExp("\r\n","gm"),"<br>")+"</td>");
 							}else{
 								$("#singleentity").html("");
 							}

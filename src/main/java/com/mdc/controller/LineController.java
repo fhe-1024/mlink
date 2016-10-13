@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 import com.mdc.service.ILineService;
 import com.mdc.util.PageUtil;
 import com.mdc.view.MlinkLine;
-import com.mdc.view.MlinkSingle;
 
 @Controller
 @RequestMapping("/line")
