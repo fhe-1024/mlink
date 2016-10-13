@@ -1,6 +1,7 @@
 package com.mdc.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.google.gson.Gson;
 import com.mdc.service.ICityService;
 import com.mdc.service.ICountryService;
+import com.mdc.service.IExchangeService;
 import com.mdc.service.IFacilityService;
 import com.mdc.service.INodeService;
 import com.mdc.service.ISingleService;
 import com.mdc.view.MlinkCountry;
+import com.mdc.view.MlinkExchange;
 import com.mdc.view.MlinkFacility;
 import com.mdc.view.MlinkSingle;
 
@@ -41,6 +44,8 @@ public class MachineController {
 	private IFacilityService facilityService;
 	@Autowired
 	private ISingleService singleService;
+	@Autowired
+	private IExchangeService exchangeService;
 
 	@RequestMapping(path = "/index/{countryid}")
 	public String index(@PathVariable String countryid, HttpServletRequest request) {
@@ -70,6 +75,14 @@ public class MachineController {
 		argsMap.put("countryid", countryid);
 		List<FacilityData> resultList = new ArrayList<FacilityData>();
 		try {
+
+			double charge = 1.0;
+			MlinkExchange exchange = exchangeService.getLastExchange();
+			if (exchange != null) {
+				charge = exchange.getExchange();
+			}
+			BigDecimal chargebg = new BigDecimal(charge);
+
 			list = facilityService.getAllMapList(argsMap);
 			if (list != null) {
 				Iterator<Map<String, Object>> it = list.iterator();
@@ -83,7 +96,8 @@ public class MachineController {
 						MlinkFacility facility = new MlinkFacility();
 						facility.setName((String) map.get("name"));
 						facility.setPower((String) map.get("power"));
-						facility.setPrice((String) map.get("price"));
+						BigDecimal origin = new BigDecimal((String) map.get("price"));
+						facility.setPrice(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
 						facility.setStandard((String) map.get("standard"));
 						datalist.add(facility);
 					} else if ("1".equals((String) map.get("type"))) {
@@ -97,7 +111,8 @@ public class MachineController {
 							MlinkFacility facility = new MlinkFacility();
 							facility.setName(name);
 							facility.setPower(power[i]);
-							facility.setPrice(price[i]);
+							BigDecimal origin = new BigDecimal(price[i]);
+							facility.setPrice(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
 							facility.setStandard(standard[i]);
 							datalist.add(facility);
 						}
@@ -112,7 +127,8 @@ public class MachineController {
 							MlinkFacility facility = new MlinkFacility();
 							facility.setName(name);
 							facility.setPower(power[i]);
-							facility.setPrice(price[i]);
+							BigDecimal origin = new BigDecimal(price[i]);
+							facility.setPrice(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
 							datalist.add(facility);
 						}
 					} else if ("3".equals((String) map.get("type"))) {
@@ -120,10 +136,11 @@ public class MachineController {
 						// (机房-托管规格)-(机柜功率-机柜价格)
 						String name = map.get("name").toString();
 						String power = map.get("power").toString();
+						BigDecimal origin = new BigDecimal(power);
 						data.setSize("1");
 						MlinkFacility facility = new MlinkFacility();
 						facility.setName(name);
-						facility.setPower(power);
+						facility.setPower(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
 						datalist.add(facility);
 					}
 					data.setData(datalist);

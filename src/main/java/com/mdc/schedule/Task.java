@@ -3,6 +3,8 @@ package com.mdc.schedule;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,8 @@ import com.mdc.view.MlinkExchange;
 
 @Component
 public class Task {
+
+	private Log log = LogFactory.getLog(getClass());
 
 	@Autowired
 	private IExchangeService exchangeService;
@@ -35,7 +39,24 @@ public class Task {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
+			try {
+				String info = ExchangeUtil.get(
+						"http://api.k780.com:88/?app=finance.rate&scur=USD&tcur=CNY&appkey=21231&sign=f8e9e0fa28f0b930c1fce12daeccf793");
+				K780 obj = new Gson().fromJson(info, K780.class);
+				if (obj != null && "1".equals(obj.getSuccess())) {
+					MlinkExchange exchange = new MlinkExchange();
+					exchange.setId(UUID.randomUUID().toString());
+					exchange.setFromcurrency(obj.getResult().getScur());
+					exchange.setTocurrency(obj.getResult().getTcur());
+					exchange.setExchange(Double.parseDouble(obj.getResult().getRate()));
+					exchange.setCreatetime(new Timestamp(System.currentTimeMillis()));
+					exchangeService.save(exchange);
+				}
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -147,6 +168,86 @@ class Currency {
 		return "Currency [date=" + date + ", time=" + time + ", fromCurrency=" + fromCurrency + ", amount=" + amount
 				+ ", toCurrency=" + toCurrency + ", currency=" + currency + ", convertedamount=" + convertedamount
 				+ "]";
+	}
+
+}
+
+class K780 {
+	private String success;
+	private K780result result;
+
+	public String getSuccess() {
+		return success;
+	}
+
+	public void setSuccess(String success) {
+		this.success = success;
+	}
+
+	public K780result getResult() {
+		return result;
+	}
+
+	public void setResult(K780result result) {
+		this.result = result;
+	}
+
+}
+
+class K780result {
+	private String status;
+	private String scur;
+	private String tcur;
+	private String ratenm;
+	private String rate;
+	private String update;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getScur() {
+		return scur;
+	}
+
+	public void setScur(String scur) {
+		this.scur = scur;
+	}
+
+	public String getTcur() {
+		return tcur;
+	}
+
+	public void setTcur(String tcur) {
+		this.tcur = tcur;
+	}
+
+	public String getRatenm() {
+		return ratenm;
+	}
+
+	public void setRatenm(String ratenm) {
+		this.ratenm = ratenm;
+	}
+
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
+	}
+
+	public String getUpdate() {
+		return update;
+	}
+
+	public void setUpdate(String update) {
+		this.update = update;
 	}
 
 }

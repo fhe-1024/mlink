@@ -13,10 +13,15 @@ import com.mdc.view.MlinkExchange;
 public class ExchangeServiceImpl implements IExchangeService {
 	@Autowired
 	private ExchangeDao exchangeDao;
-	
+
 	public int save(MlinkExchange exchange) throws Exception {
 		// TODO Auto-generated method stub
 		return exchangeDao.save(exchange);
+	}
+
+	public MlinkExchange getLastExchange() throws Exception {
+		// TODO Auto-generated method stub
+		return exchangeDao.getLastExchange();
 	}
 
 }

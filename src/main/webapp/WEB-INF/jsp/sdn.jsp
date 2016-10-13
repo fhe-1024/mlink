@@ -13,7 +13,6 @@
 	type="text/css">
 <script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
 <script language="javascript" src="resources/web/js/header.js"></script>
-<script language="javascript" src="resources/web/js/pagejs.js"></script>
 </head>
 
 <body>
@@ -54,7 +53,7 @@
 		<div class="pagewidth">
 			<h4>专线价格详情</h4>
 			<div class="detailstable">
-				<table width="600" border="0" cellspacing="0" cellpadding="0">
+				<table width="600" border="0" cellspacing="0" cellpadding="0" id="sdn">
 					<tr>
 						<td>美国洛杉矶 - 北京</td>
 						<td>1000元/Mbps/月</td>
@@ -111,7 +110,28 @@
 	</div>
 	<%@include file="foot.jsp"%>
 	<script type="text/javascript">
-		
+	 $.ajax({
+			url : 'sdn/getLineList',
+			data : {},
+			dataType : 'json',
+			async : false,
+			type : 'get',
+			success : function(json) {
+				console.log(json);
+				if(json.result){
+					var sdnhtml="";
+					//<tr>
+					//<td>美国洛杉矶 - 北京</td>
+					//<td>1000元/Mbps/月</td>
+					//</tr>
+					$.each(json.data,function(i, obj) {
+						console.log(obj.name);
+						sdnhtml+="<tr><td>"+obj.name+"</td><td>"+obj.price+"元/Mbps/月</td><tr>";
+					}); 
+					$("#sdn").html(sdnhtml);
+				}
+			}
+	 });	
 	</script>
 </body>
 </html>
