@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>国内机房</title>
+<title><%=request.getAttribute("countryname") %>机房</title>
 <base
 	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath()%>/">
@@ -45,7 +45,7 @@
 				<img src="resources/web/images/abroadpic02.jpg">
 				<div class="intrpage jf">
 					<h3>
-						<em>国内</em> 机房托管服务
+						<em><%=request.getAttribute("countryname") %></em> 机房托管服务
 					</h3>
 					<p>20+顶级数据中心，800Gbps</p>
 				</div>
@@ -54,7 +54,7 @@
 	</div>
 	<div class="rowblock">
 		<div class="pagewidth">
-			<h4>中国机房信息</h4>
+			<h4><%=request.getAttribute("countryname") %>机房信息</h4>
 
 			<div class="sel_jfdiv">
 				<div class="sel_jf_row" id="machine">
@@ -69,7 +69,8 @@
 						href="#"> 无锡</a> <a href="#">西安</a> <a href="#"> 珠海</a>
 					<div class="clearfloat"></div>
 				</div>
-				<div class="sel_jf_row">
+				
+				<div class="sel_jf_row" style="display: none;">
 					<a href="#" class="moresel"><span>香港01</span>
 						<div class="localdiv">
 							<div class="localblock">香港01</div>
@@ -77,6 +78,7 @@
 						</div></a> <a href="#">台湾</a>
 				</div>
 				<div class="clearfloat"></div>
+				
 			</div>
 			<div class="jf_info">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -104,7 +106,7 @@
 	</div>
 	<div class="rowblock graybg">
 		<div class="pagewidth">
-			<h4>美国机房托管价格详情</h4>
+			<h4><%=request.getAttribute("countryname") %>机房托管价格详情</h4>
 			<div class="detailstable">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" id="mlink">
 					<tr>

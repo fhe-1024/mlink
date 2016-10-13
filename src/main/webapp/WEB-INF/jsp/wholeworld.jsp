@@ -205,7 +205,7 @@
 							console.log(obj.text);
 							$.each(json.data[i].children,function(i,obj){
 								console.log(obj.text);
-								option+="<a href='#'>"+obj.text+"</a>";
+								option+="<a href='machine/index/"+obj.id+"'>"+obj.text+"</a>";
 							});
 							area+="<td>"+option+"</td></tr>";
 							html+=area;

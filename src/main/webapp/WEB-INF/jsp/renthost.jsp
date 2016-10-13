@@ -1,0 +1,105 @@
+<%@page language="java" pageEncoding="utf-8"%>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>主机租用</title>
+<base
+	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+					+ request.getContextPath()%>/">
+<link href="resources/web/style/common.css" rel="stylesheet"
+	type="text/css">
+<link href="resources/web/style/othercss.css" rel="stylesheet"
+	type="text/css">
+<script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="resources/web/js/header.js"></script>
+<script language="javascript" src="resources/web/js/pagejs.js"></script>
+</head>
+
+<body>
+	<div class="pageheader">
+		<div class="header">
+			<div class="headermain pagewidth">
+				<div class="logo">
+					<img src="resources/web/images/logo.png">
+				</div>
+				<div class="meun">
+					<ul>
+						<li><a href="#"><span>首页</span></a></li>
+						<li><a href="#"><span>主机托管/租用</span></a>
+							<ol>
+								<li><a href="#">主机托管</a></li>
+								<li><a href="#">主机租用</a></li>
+								<li><a href="#">云主机</a></li>
+								<li><a href="#">带宽租用</a></li>
+								<li><a href="#">防DDoS攻击</a></li>
+							</ol></li>
+						<li><a href="#"><span>SDN专线</span></a></li>
+						<li><a href="#"><span>关于我们</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wholeworldbanner">
+			<div class="pagewidth pic_p">
+				<img src="resources/web/images/rentpic.jpg">
+				<div class="intrpage jf">
+					<h3>主机租用</h3>
+					<p>当您没有自己的服务器、网络设备等硬件时，我们可以提供服务器租用业务。
+						根据您的需求，我们采购符合要求的硬件设备，并以租用的形式提供给您使用。</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="rowblock">
+		<div class="pagewidth">
+			<div class="renthostdiv">
+				<div class="renthostblock">
+					<h5>DELL、华为、超微等国内外知名设备厂商</h5>
+					<img src="resources/web/images/renthostpic01.jpg">
+				</div>
+				<div class="renthostblock">
+					<h5>稳定、优质的硬件设备</h5>
+					<img src="resources/web/images/renthostpic02.jpg">
+				</div>
+				<div class="renthostblock">
+					<h5>按需定制，解决烦恼</h5>
+					<img src="resources/web/images/renthostpic03.jpg">
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+
+	<div class="rowblock graybg">
+		<div class="pagewidth">
+			<h4>想要了解更多地区的主机租用业务信息，请联系我们。</h4>
+			<div class="contactlist">
+				<div class="contactblock contacticon01">咨询热线：4001053626</div>
+				<div class="contactblock contacticon02">咨询邮箱：sales@mlink.cn</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="pagewidth">
+			<div class="footer_b">
+				<em>友情链接：</em><a herf="#">移数通</a>
+			</div>
+			<div class="footer_b">
+				<em>备案号：</em>京ICP备10054122号-6
+			</div>
+			<div class="footer_b">
+				<em>客服热线：</em>4001053626
+			</div>
+			<div class="footer_b">
+				<em>咨询邮箱：</em>sales@mlink.cn
+			</div>
+			<div class="footer_b rightfloat">
+				<em>官网二维码：</em><img src="resources/web/images/web_qr.jpg">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

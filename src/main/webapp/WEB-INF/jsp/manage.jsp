@@ -16,12 +16,14 @@
 	
 <script type="text/javascript" src="resources/manage/mlink_basic.js"></script>	
 <script type="text/javascript" src="resources/manage/mlink_facility.js"></script>	
-<script type="text/javascript" src="resources/manage/mlink_single.js"></script>	
+<script type="text/javascript" src="resources/manage/mlink_single.js"></script>
+<script type="text/javascript" src="resources/manage/mlink_line.js"></script>	
+<script type="text/javascript" src="resources/manage/mlink_consult.js"></script>	
 </head>
 <body>
 
 
-	<div id="tabs" class="easyui-tabs" style="width: 100%; min-height:100%;margin:0px;">
+	<div id="tabs" class="easyui-tabs" style="width: 100%; min-height:50%;margin:0px;">
 		<div title="基本数据" style="padding: 10px">
 			<div class="easyui-layout" style="width: 100%; height: 800px;">
 				<div data-options="region:'west',split:true" title="mlink-大洲-国家-城市-节点"
@@ -64,6 +66,22 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		<div title="专线价格详情" style="padding: 10px" >
+			<div class="easyui-layout" style="width: 100%; height: 800px;">
+				<table class="easyui-datagrid" id="line_table">
+				</table>
+			</div>
+		</div>
+		
+		<div title="信息咨询" style="padding: 10px" >
+			<div class="easyui-layout" style="width: 100%; height: 800px;">
+					<table class="easyui-datagrid" id="consult_table">
+					</table>
+			</div>
+		</div>
+		
 	</div>
 	
 	<div id="window" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
@@ -140,6 +158,25 @@
         </form>
 	</div>
 	
+	<div id="linewindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
+		 <form id="lineform">
+		 	<input type="hidden" name="line_id" value="">
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" label="名称：" id="line_name" name="line_name" labelPosition="top" style="width:100%;height:52px">
+        </div>
+         <div style="margin-bottom:20px">
+            <input class="easyui-textbox" label="价格：" id="line_price" name="line_price" labelPosition="top" style="width:100%;height:52px">
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" label="排序：" id="line_sort" name="line_sort" labelPosition="top" style="width:100%;height:52px">
+        </div>
+       
+        <div>
+            <a id="line_submit"  class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
+        </div>
+        </form>
+	</div>
+	
 	
 	<script type="text/javascript">
 	
@@ -148,6 +185,7 @@
 		 $("#window").window("close");
 		 $("#facilitywindow").window("close");
 		 $("#singlewindow").window("close");
+		 $("#linewindow").window("close");
 		 $('#tabs').tabs({
 			    border:false,
 			    onSelect:function(title,index){
@@ -157,10 +195,17 @@
 			    		facility.init();
 			    	}else if(index=='2'){
 			    		single.init();
+			    	}else if(index=='3'){
+			    		line.init();
+			    	}else if(index=='4'){
+			    		consult.init();
 			    	}
 			    }
 			});
      });
+	 
+	 
+	 
 	</script>
 </body>
 </html>
