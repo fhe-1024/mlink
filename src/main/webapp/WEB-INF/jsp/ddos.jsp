@@ -35,15 +35,15 @@
 		<div class="pagewidth">
 			<div class="renthostdiv">
 				<div class="renthostblock">
-					<h5>DELL、华为、超微等国内外知名设备厂商</h5>
+					<h5>灵活部署和扩展</h5>
 					<img src="resources/web/images/dospic01.jpg">
 				</div>
 				<div class="renthostblock">
-					<h5>稳定、优质的硬件设备</h5>
+					<h5>按需计费</h5>
 					<img src="resources/web/images/dospic02.jpg">
 				</div>
 				<div class="renthostblock">
-					<h5>按需定制，解决烦恼</h5>
+					<h5>全面防护</h5>
 					<img src="resources/web/images/dospic03.jpg">
 				</div>
 			</div>

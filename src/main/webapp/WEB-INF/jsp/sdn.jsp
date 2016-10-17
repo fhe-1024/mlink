@@ -96,13 +96,13 @@
 				<div class="sdwblock">
 					<div class="sdwicon sdwicon02"></div>
 					<div class="sdwtext">
-						即时开通，即用即付<br> 网络专享，按需调动
+						无缝连接阿里云和AWS<br> 遵守国内外法律规范
 					</div>
 				</div>
 				<div class="sdwblock">
 					<div class="sdwicon sdwicon03"></div>
 					<div class="sdwtext">
-						即时开通，即用即付<br> 网络专享，按需调动
+						超低延迟和丢包<br> 低价高效，安全稳定
 					</div>
 				</div>
 			</div>

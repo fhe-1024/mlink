@@ -15,7 +15,15 @@ var consult = function() {
 						remoteSort: false,
 						columns:[[ 
 							{field:"name",title:"称呼",width:'10%'},
-							{field:"sex",title:"性别",width:'10%'},
+							{field:"sex",title:"性别",width:'10%',
+								formatter:function(value,row,index){
+									if(value=='0'){
+										return '男士';
+									}else{
+										return '女士';
+									}
+								}
+							},
 							{field:"phone",title:"联系电话",width:'10%'},
 							{field:"position",title:"职位",width:'10%'},
 							{field:"company",title:"公司",width:'10%'},

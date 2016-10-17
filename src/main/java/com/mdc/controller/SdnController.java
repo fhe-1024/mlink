@@ -60,7 +60,7 @@ public class SdnController {
 					double price = (Double) map.get("price");
 					BigDecimal origin = new BigDecimal(price);
 					line.setPrice(
-							Double.parseDouble(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString()));
+							Double.parseDouble(origin.multiply(chargebg).setScale(0, BigDecimal.ROUND_UP).toString()));
 					resultList.add(line);
 				}
 			}

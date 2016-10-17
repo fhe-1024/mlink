@@ -126,14 +126,14 @@
 					<div class="rowlineblock_icon lineblock_icon01"></div>
 					<div class="rowlineblock_t">专业</div>
 					<div class="rowlineblock_p">
-						广阔的专业知识<br> 和人际资源<br> 丰富的全球部署见解和经验<br> 专业的技术团队
+						广阔的专业知识和人际资源<br> 丰富的全球部署见解和经验<br> 专业的技术团队
 					</div>
 				</div>
 				<div class="rowlineblock">
 					<div class="rowlineblock_icon lineblock_icon02"></div>
-					<div class="rowlineblock_t">专业</div>
+					<div class="rowlineblock_t">敏捷</div>
 					<div class="rowlineblock_p">
-						广阔的专业知识<br> 和人际资源<br> 丰富的全球部署见解和经验<br> 专业的技术团队
+						高度定制化的敏捷服务<br> 快速部署和响应<br> 创造性的智能解决方案
 					</div>
 				</div>
 				<div class="rowlineblock noline">

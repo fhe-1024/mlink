@@ -44,12 +44,13 @@ button,input,select,textarea{outline: none;resize: none;}.clearfloat {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: rgba(255,255,255,0.2);
-	background-color: rgba(20,50,95,0.5);
-	position: absolute;
+	background-color: rgba(20,50,95,0.7);
+	position: fixed;
 	left: 0px;
 	top: 0px;
 	z-index: 100;
 }
+
 .headerp {
 	position: absolute;
 	left: 0px;

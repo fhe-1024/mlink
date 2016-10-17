@@ -33,6 +33,7 @@ public class ServicePointCut {
 		log.info("↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓");
 		log.info("调用方法:" + joinpoint.getSignature().getDeclaringType().getName() + "."
 				+ joinpoint.getSignature().getName());
+		long before = System.currentTimeMillis();
 		Object[] args = joinpoint.getArgs();
 		for (int i = 0; i < args.length; i++) {
 			log.info("参数[" + i + "]" + args[i]);
@@ -41,6 +42,8 @@ public class ServicePointCut {
 		if (obj != null) {
 			log.info("返回结果:" + obj.toString());
 		}
+		long after = System.currentTimeMillis();
+		log.info("方法耗时:" + (after - before)+"毫秒");
 		log.info("↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑");
 		return obj;
 	}

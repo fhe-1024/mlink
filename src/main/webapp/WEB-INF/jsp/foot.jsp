@@ -1,9 +1,7 @@
 <%@page language="java" pageEncoding="utf-8"%>
 <div class="footer">
 	<div class="pagewidth">
-		<div class="footer_b">
-			<em>友情链接：</em><a herf="#">移数通</a>
-		</div>
+		
 		<div class="footer_b">
 			<em>备案号：</em>京ICP备10054122号-6
 		</div>

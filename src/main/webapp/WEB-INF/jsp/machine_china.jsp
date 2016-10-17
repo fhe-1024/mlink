@@ -149,7 +149,7 @@
 	</div>
 	<div class="rowblock">
 		<div class="pagewidth">
-			<h4>想要了解更多地区的机房价格托管信息，请联系我们。</h4>
+			<h4>想要了解更多地区的机房托管价格信息，请联系我们。</h4>
 			<div class="contactlist">
 				<div class="contactblock contacticon01">咨询热线：4001053626</div>
 				<div class="contactblock contacticon02">咨询邮箱：sales@mlink.cn</div>

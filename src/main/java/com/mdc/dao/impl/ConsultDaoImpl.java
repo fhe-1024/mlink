@@ -75,6 +75,7 @@ public class ConsultDaoImpl implements ConsultDao {
 		Map<String, Object> countMap = new HashMap<String, Object>();
 		sb.append("select id,sex,name,phone,position,company,text,createtime from mlink_consult where 1=1 ");
 		countsb.append("select count(id) from mlink_consult where 1=1");
+		sb.append(" order by createtime desc ");
 		sb.append("limit :start,:end ");
 		searchMap.put("start", page.getFirst() - 1);
 		searchMap.put("end", page.getPageSize());

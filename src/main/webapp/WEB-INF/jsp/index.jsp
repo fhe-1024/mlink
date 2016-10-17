@@ -97,7 +97,7 @@
 		<div class="pagewidth">
 			<h1>业务体系</h1>
 			<div class="businesstypelist">
-				<div class="businesstypelist_b">
+				<div class="businesstypelist_b" onclick="javascript:window.location.href='wholeworld/index'">
 					<div class="businesstypelist_b_p b_b_p_icon01"></div>
 					<div class="businesstypelist_b_t">
 						<h3>主机托管</h3>
@@ -106,7 +106,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b add_w">
+				<div class="businesstypelist_b add_w" onclick="javascript:window.location.href='renthost/index'">
 					<div class="businesstypelist_b_p b_b_p_icon02"></div>
 					<div class="businesstypelist_b_t">
 						<h3>主机租用</h3>
@@ -115,7 +115,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b">
+				<div class="businesstypelist_b" onclick="javascript:window.location.href='cloudrent/index'">
 					<div class="businesstypelist_b_p b_b_p_icon03"></div>
 					<div class="businesstypelist_b_t">
 						<h3>云主机</h3>
@@ -124,7 +124,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b">
+				<div class="businesstypelist_b" onclick="javascript:window.location.href='wholeworld/index'">
 					<div class="businesstypelist_b_p b_b_p_icon04"></div>
 					<div class="businesstypelist_b_t">
 						<h3>带宽租用</h3>
@@ -133,7 +133,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b add_w">
+				<div class="businesstypelist_b add_w" onclick="javascript:window.location.href='sdn/index'">
 					<div class="businesstypelist_b_p b_b_p_icon05"></div>
 					<div class="businesstypelist_b_t">
 						<h3>SDN专线</h3>
@@ -142,7 +142,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b">
+				<div class="businesstypelist_b" onclick="javascript:window.location.href='ddos/index'">
 					<div class="businesstypelist_b_p b_b_p_icon06"></div>
 					<div class="businesstypelist_b_t">
 						<h3>防DDoS 攻击</h3>
@@ -185,7 +185,7 @@
 				</div>
 				<div class="index_advantage_list_b">
 					<div class="index_a_l_b_icon index_a_l_b_icon04"></div>
-					<h3>强大的设备部署</h3>
+					<h3>更强大的设备部署</h3>
 					<div class="index_a_l_b_t">
 						按需采购安装<br> 高度定制方案<br> 快速响应和配置
 					</div>

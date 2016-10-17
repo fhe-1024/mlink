@@ -97,7 +97,7 @@ public class MachineController {
 						facility.setName((String) map.get("name"));
 						facility.setPower((String) map.get("power"));
 						BigDecimal origin = new BigDecimal((String) map.get("price"));
-						facility.setPrice(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
+						facility.setPrice(origin.multiply(chargebg).setScale(0, BigDecimal.ROUND_UP).toString());
 						facility.setStandard((String) map.get("standard"));
 						datalist.add(facility);
 					} else if ("1".equals((String) map.get("type"))) {
@@ -112,7 +112,7 @@ public class MachineController {
 							facility.setName(name);
 							facility.setPower(power[i]);
 							BigDecimal origin = new BigDecimal(price[i]);
-							facility.setPrice(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
+							facility.setPrice(origin.multiply(chargebg).setScale(0, BigDecimal.ROUND_UP).toString());
 							facility.setStandard(standard[i]);
 							datalist.add(facility);
 						}
@@ -128,7 +128,7 @@ public class MachineController {
 							facility.setName(name);
 							facility.setPower(power[i]);
 							BigDecimal origin = new BigDecimal(price[i]);
-							facility.setPrice(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
+							facility.setPrice(origin.multiply(chargebg).setScale(0, BigDecimal.ROUND_UP).toString());
 							datalist.add(facility);
 						}
 					} else if ("3".equals((String) map.get("type"))) {
@@ -140,7 +140,7 @@ public class MachineController {
 						data.setSize("1");
 						MlinkFacility facility = new MlinkFacility();
 						facility.setName(name);
-						facility.setPower(origin.multiply(chargebg).setScale(2, BigDecimal.ROUND_UP).toString());
+						facility.setPower(origin.multiply(chargebg).setScale(0, BigDecimal.ROUND_UP).toString());
 						datalist.add(facility);
 					}
 					data.setData(datalist);
