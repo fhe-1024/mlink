@@ -12,7 +12,7 @@
 			<em>咨询邮箱：</em>sales@mlink.cn
 		</div>
 		<div class="footer_b rightfloat">
-			<em>官网二维码：</em><img src="resources/web/images/web_qr.jpg">
+			<em>官网二维码：</em><img src="resources/web/images/web_qr.png">
 		</div>
 	</div>
 </div>

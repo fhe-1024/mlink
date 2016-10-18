@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Basic Layout - jQuery EasyUI Demo</title>
+<title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"

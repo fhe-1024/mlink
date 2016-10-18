@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SDN专线服务</title>
+<title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
 <base
 	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath()%>/">
@@ -67,7 +67,11 @@
 						<td>134元/Mbps/月</td>
 					</tr>
 				</table>
-				<div class="tablemark">以上所有报价均为税前价格，在此基础上需加收6%的增值税。</div>
+				<div class="tablemark">专线订购说明：<br>
+费用按购买节点、带宽以及周期计算，所有款项采取预付方式。<br>
+按天或月在管理平台上自主订购。如需要一年以上的专线服务，需在线下签署合约<br>
+注意：以上报价未包含6%的增值税。
+</div>
 			</div>
 		</div>
 	</div>

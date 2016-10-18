@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>主机租用</title>
+<title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
 <base
 	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath()%>/">
