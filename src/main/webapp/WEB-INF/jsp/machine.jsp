@@ -36,15 +36,7 @@
 
 			<div class="sel_jfdiv">
 				<div class="sel_jf_row" id="machine">
-					<a href="#" class="moresel"><span>香港01</span>
-						<div class="localdiv">
-							<div class="localblock">香港01</div>
-							<div class="localblock">香港02</div>
-						</div></a><a class="active" href="#">北京</a> <a href="#">成都</a><a href="#">重庆</a>
-					<a href="#">佛山</a><a href="#">广州</a><a href="#">济南</a> <a href="#">
-						南京</a> <a href="#"> 上海</a> <a href="#"> 沈阳</a> <a href="#">石家庄</a> <a
-						href="#"> 天津</a> <a href="#"> 温州</a> <a href="#"> 武汉</a> <a
-						href="#"> 无锡</a> <a href="#">西安</a> <a href="#"> 珠海</a>
+					
 					<div class="clearfloat"></div>
 				</div>
 				
@@ -68,75 +60,18 @@
 						<th scope="col"><span class="tableicon t_icon04"></span>等级资质</th>
 					</tr>
 					<tr id="singleentity">
-						<td>39,390平方米</td>
-						<td>100% 正常运作时间<br> 99.9999+% 的历史正常运行时间
-						</td>
-						<td>电力：N，N+1， 2N UPSs，PDUs和RPPs；N+1<br>
-							冷却：N+1，冷却机，CRAHs和 冷水泵
-						</td>
-						<td>SSAE 16 SOC-1 Type II<br> PCI DSS<br>
-							基础设施/物理安全标准符合HIPAA规定<br></td>
 					</tr>
 				</table>
 
 			</div>
 		</div>
 	</div>
-	<div class="rowblock graybg">
+	<div class="rowblock graybg" id="mlink_head">
 		<div class="pagewidth">
 			<h4><%=request.getAttribute("countryname") %>机房托管价格详情</h4>
 			<div class="detailstable">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" id="mlink">
-					<tr>
-						<th scope="col">机房</th>
-						<th scope="col">托管规格</th>
-						<th scope="col">机柜功率</th>
-						<th scope="col">机柜价格(元/月)</th>
-					</tr>
-					<tr>
-						<td rowspan="2">洛杉矶机房</td>
-						<td>整柜</td>
-						<td>20A/208V</td>
-						<td>9050</td>
-					</tr>
-					<tr>
-						<td>整柜</td>
-						<td>30A/208V</td>
-						<td>12400</td>
-					</tr>
-					<tr>
-						<td>达拉斯机房</td>
-						<td>整柜</td>
-						<td>30A/120V</td>
-						<td>12400</td>
-					</tr>
-					<tr>
-						<td>华盛顿机房</td>
-						<td>整柜</td>
-						<td>20A/208V</td>
-						<td>10050</td>
-					</tr>
-					<tr>
-						<td colspan="2" rowspan="4">国际独享带宽价格（元/Mbps/月）</td>
-						<td>&lt;100M</td>
-						<td>30</td>
-					</tr>
-					<tr>
-						<td>100M-999M</td>
-						<td>27</td>
-					</tr>
-					<tr>
-						<td>1000M-1999M</td>
-						<td>24</td>
-					</tr>
-					<tr>
-						<td>&gt;2000M</td>
-						<td>17</td>
-					</tr>
-					<tr>
-						<td colspan="2">一次性上架费（元/柜）</td>
-						<td colspan="2">10050</td>
-					</tr>
+					
 				</table>
 				<div class="tablemark">以上所有报价均为税前价格，在此基础上需加收6%的增值税。</div>
 
@@ -221,10 +156,31 @@
 								});
 								
 								$("#mlink").html(facility);
+							}else{
+								$("#mlink_head").hide();
 							}
 						}
 					});
 			},
+			
+			inittip:function(){
+				$.ajax({
+					url : 'machine/getTipEntity',
+					data : {"countryid":"<%=request.getAttribute("countryid")%>"},
+					dataType : 'json',
+					async : false,
+					type : 'get',
+					success : function(json) {
+						console.log(json);
+						if(json.result){
+							$(".tablemark").html(json.tip.tip);
+						}else{
+							$(".tablemark").html("");
+						}
+					}
+			 });	
+			},
+			
 			initmachine:function(){
 				 $.ajax({
 						url : 'machine/getNodeList',

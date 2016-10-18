@@ -1,6 +1,8 @@
 package com.mdc.schedule;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.apache.commons.logging.Log;
@@ -10,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.mdc.service.IExchangeService;
 import com.mdc.util.ExchangeUtil;
 import com.mdc.view.MlinkExchange;
@@ -22,37 +25,48 @@ public class Task {
 	@Autowired
 	private IExchangeService exchangeService;
 
-	@Scheduled(cron = "0 0 0/1 * * ?")
+	@Scheduled(cron = "0 0/5 * * * ? ")
 	public void exchange() {
 		try {
 			String info = ExchangeUtil.get(
-					"http://apis.baidu.com/apistore/currencyservice/currency?fromCurrency=USD&toCurrency=CNY&amount=1");
-			Code code = new Gson().fromJson(info, Code.class);
-			if (code != null) {
+					"http://api.k780.com:88/?app=finance.rate_cnyquot&curno=USD&appkey=21231&sign=f8e9e0fa28f0b930c1fce12daeccf793&format=json");
+			JsonElement element = new Gson().fromJson(info, JsonElement.class);
+			String code = element.getAsJsonObject().get("success").getAsString();
+			if ("1".equals(code)) {
+				String sell = element.getAsJsonObject().getAsJsonObject("result").getAsJsonObject("USD")
+						.getAsJsonObject("BOC").get("se_sell").getAsString();
+				
+				String update=element.getAsJsonObject().getAsJsonObject("result").getAsJsonObject("USD")
+						.getAsJsonObject("BOC").get("upddate").getAsString();
+				
+				BigDecimal sellbg = new BigDecimal(sell);
 				MlinkExchange exchange = new MlinkExchange();
 				exchange.setId(UUID.randomUUID().toString());
-				exchange.setFromcurrency(code.getRetData().getFromCurrency());
-				exchange.setTocurrency(code.getRetData().getToCurrency());
-				exchange.setExchange(code.getRetData().getCurrency());
+				exchange.setFromcurrency("USD");
+				exchange.setTocurrency("CNY");
+				exchange.setExchange(sellbg.movePointLeft(2).doubleValue());
+				exchange.setUpdatetime(Timestamp.valueOf(update));
 				exchange.setCreatetime(new Timestamp(System.currentTimeMillis()));
 				exchangeService.save(exchange);
+
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e);
 			try {
 				String info = ExchangeUtil.get(
-						"http://api.k780.com:88/?app=finance.rate&scur=USD&tcur=CNY&appkey=21231&sign=f8e9e0fa28f0b930c1fce12daeccf793");
-				K780 obj = new Gson().fromJson(info, K780.class);
-				if (obj != null && "1".equals(obj.getSuccess())) {
+						"http://apis.baidu.com/apistore/currencyservice/currency?fromCurrency=USD&toCurrency=CNY&amount=1");
+				Code code = new Gson().fromJson(info, Code.class);
+				if (code != null) {
 					MlinkExchange exchange = new MlinkExchange();
 					exchange.setId(UUID.randomUUID().toString());
-					exchange.setFromcurrency(obj.getResult().getScur());
-					exchange.setTocurrency(obj.getResult().getTcur());
-					exchange.setExchange(Double.parseDouble(obj.getResult().getRate()));
+					exchange.setFromcurrency(code.getRetData().getFromCurrency());
+					exchange.setTocurrency(code.getRetData().getToCurrency());
+					exchange.setExchange(code.getRetData().getCurrency());
 					exchange.setCreatetime(new Timestamp(System.currentTimeMillis()));
 					exchangeService.save(exchange);
 				}
+
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

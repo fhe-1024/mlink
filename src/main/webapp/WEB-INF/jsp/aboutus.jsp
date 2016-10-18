@@ -80,7 +80,7 @@
 					<div class="aboutblockicon abicon02"></div>
 					<h5>响应</h5>
 					<p>
-						全球7*24小时无间断的运作和响应。
+						全球7*24小时<br>无间断的运作和响应。
 					</p>
 				</div>
 

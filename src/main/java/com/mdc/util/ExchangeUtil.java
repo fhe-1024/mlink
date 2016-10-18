@@ -1,6 +1,7 @@
 package com.mdc.util;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,6 +16,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.util.Base64Utils;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 public class ExchangeUtil {
 	// recommend way to execute http
@@ -76,8 +81,20 @@ public class ExchangeUtil {
 
 	public static void main(String[] args) {
 		String url = "http://apis.baidu.com/apistore/currencyservice/currency?fromCurrency=USD&toCurrency=CNY&amount=1";
+
+		url = "http://api.k780.com:88/?app=finance.rate_cnyquot&curno=USD&appkey=21231&sign=f8e9e0fa28f0b930c1fce12daeccf793&format=json";
+
 		try {
-			ExchangeUtil.get(url);
+			String json = ExchangeUtil.get(url);
+			JsonElement element = new Gson().fromJson(json, JsonElement.class);
+			String code = element.getAsJsonObject().get("success").getAsString();
+			if ("1".equals(code)) {
+				String sell = element.getAsJsonObject().getAsJsonObject("result").getAsJsonObject("USD")
+						.getAsJsonObject("BOC").get("se_sell").getAsString();
+				System.out.println(sell);
+				BigDecimal currency=new BigDecimal(sell);
+				System.out.println(currency.movePointLeft(2).toString());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,6 +1,5 @@
 package com.mdc.view;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class MlinkExchange {
@@ -8,6 +7,7 @@ public class MlinkExchange {
 	private String fromcurrency;
 	private String tocurrency;
 	private double exchange;
+	private Timestamp updatetime;
 	private Timestamp createtime;
 
 	public String getId() {
@@ -48,6 +48,14 @@ public class MlinkExchange {
 
 	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
+	}
+
+	public Timestamp getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(Timestamp updatetime) {
+		this.updatetime = updatetime;
 	}
 
 	@Override

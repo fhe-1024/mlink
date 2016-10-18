@@ -138,7 +138,7 @@
 				</div>
 				<div class="rowlineblock noline">
 					<div class="rowlineblock_icon lineblock_icon03"></div>
-					<div class="rowlineblock_t">专业</div>
+					<div class="rowlineblock_t">服务</div>
 					<div class="rowlineblock_p">
 						本地化的服务<br> 24*7全天候支持<br> 专业的技术实现和支持团队
 					</div>

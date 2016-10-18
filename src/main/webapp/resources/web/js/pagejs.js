@@ -1,6 +1,7 @@
 $(function(){
 	
 	machine.inittable();
+	machine.inittip();
 	machine.initmachine();
 	
 	$(".sel_jf_row").find("a").click(function(){

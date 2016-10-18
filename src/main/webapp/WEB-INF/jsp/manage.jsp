@@ -19,6 +19,8 @@
 <script type="text/javascript" src="resources/manage/mlink_single.js"></script>
 <script type="text/javascript" src="resources/manage/mlink_line.js"></script>	
 <script type="text/javascript" src="resources/manage/mlink_consult.js"></script>	
+<script type="text/javascript" src="resources/manage/mlink_tip.js"></script>
+<script type="text/javascript" src="resources/manage/mlink_exchange.js"></script>
 </head>
 <body>
 
@@ -81,7 +83,26 @@
 					</table>
 			</div>
 		</div>
-		
+		<div title="小提示" style="padding: 10px" >
+			<div class="easyui-layout" style="width: 100%; height: 800px;">
+				<div data-options="region:'west',split:true" title="mlink-大洲-国家"
+					style="width: 200px;">
+					<ul class="easyui-tree" id="tip"  >
+					</ul>
+				</div>
+				<div
+					data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+					<table class="easyui-datagrid" id="tip_table">
+					</table>
+				</div>
+			</div>
+		</div>
+		<div title="汇率" style="padding: 10px" >
+			<div class="easyui-layout" style="width: 100%; height: 800px;">
+				<table class="easyui-datagrid" id="exchange_table">
+				</table>
+			</div>
+		</div>
 	</div>
 	
 	<div id="window" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
@@ -177,6 +198,19 @@
         </form>
 	</div>
 	
+	<div id="tipwindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:500px;padding:10px;">
+		 <form id="tipform">
+		 	<input type="hidden" name="tip_countryid" value=""/>
+		 	<input type="hidden" name="tip_id" value=""/>
+	        <div style="margin-bottom:20px">
+	            <input class="easyui-textbox"  label="提示：" id="tip_tip" name="tip_tip" labelPosition="top" style="width:100%;height:80px" data-options="label:'Message:',multiline:true">
+	        </div>
+	       
+	        <div>
+	            <a id="tip_submit" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Submit</a>
+	        </div>
+        </form>
+	</div>
 	
 	<script type="text/javascript">
 	
@@ -186,6 +220,8 @@
 		 $("#facilitywindow").window("close");
 		 $("#singlewindow").window("close");
 		 $("#linewindow").window("close");
+		 $("#tipwindow").window("close");
+		 
 		 $('#tabs').tabs({
 			    border:false,
 			    onSelect:function(title,index){
@@ -199,6 +235,10 @@
 			    		line.init();
 			    	}else if(index=='4'){
 			    		consult.init();
+			    	}else if(index=='5'){
+			    		tip.init();
+			    	}else if(index=='6'){
+			    		exchange.init();
 			    	}
 			    }
 			});

@@ -25,10 +25,12 @@ import com.mdc.service.IExchangeService;
 import com.mdc.service.IFacilityService;
 import com.mdc.service.INodeService;
 import com.mdc.service.ISingleService;
+import com.mdc.service.ITipService;
 import com.mdc.view.MlinkCountry;
 import com.mdc.view.MlinkExchange;
 import com.mdc.view.MlinkFacility;
 import com.mdc.view.MlinkSingle;
+import com.mdc.view.MlinkTip;
 
 @Controller
 @RequestMapping("/machine")
@@ -46,6 +48,8 @@ public class MachineController {
 	private ISingleService singleService;
 	@Autowired
 	private IExchangeService exchangeService;
+	@Autowired
+	private ITipService tipService;
 
 	@RequestMapping(path = "/index/{countryid}")
 	public String index(@PathVariable String countryid, HttpServletRequest request) {
@@ -74,6 +78,7 @@ public class MachineController {
 		Map<String, Object> argsMap = new HashMap<String, Object>();
 		argsMap.put("countryid", countryid);
 		List<FacilityData> resultList = new ArrayList<FacilityData>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 
 			double charge = 1.0;
@@ -84,7 +89,7 @@ public class MachineController {
 			BigDecimal chargebg = new BigDecimal(charge);
 
 			list = facilityService.getAllMapList(argsMap);
-			if (list != null) {
+			if (list != null && list.size() > 0) {
 				Iterator<Map<String, Object>> it = list.iterator();
 				while (it.hasNext()) {
 					Map<String, Object> map = it.next();
@@ -146,10 +151,12 @@ public class MachineController {
 					data.setData(datalist);
 					resultList.add(data);
 				}
+				resultMap.put("result", true);
+				resultMap.put("data", resultList);
+			} else {
+				resultMap.put("result", false);
 			}
-			Map<String, Object> resultMap = new HashMap<String, Object>();
-			resultMap.put("result", true);
-			resultMap.put("data", resultList);
+
 			response.setContentType("application/json;charset=utf-8");
 			response.getWriter().write(new Gson().toJson(resultMap));
 		} catch (Exception e) {
@@ -220,6 +227,29 @@ public class MachineController {
 			MlinkSingle single = singleService.getSingleByNodeId(nodeid);
 			resultMap.put("result", true);
 			resultMap.put("single", single);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			resultMap.put("result", false);
+			log.error(e);
+		} finally {
+			response.setContentType("application/json;charset=utf-8");
+			try {
+				response.getWriter().write(new Gson().toJson(resultMap));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				log.error(e);
+			}
+		}
+	}
+
+	@RequestMapping(path = "/getTipEntity")
+	public void getTipEntity(HttpServletRequest request, HttpServletResponse response) {
+		String countryid = request.getParameter("countryid");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			MlinkTip tip = tipService.getTipByCountryId(countryid);
+			resultMap.put("result", true);
+			resultMap.put("tip", tip);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			resultMap.put("result", false);
