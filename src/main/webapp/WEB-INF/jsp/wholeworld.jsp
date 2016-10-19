@@ -11,13 +11,15 @@
 	type="text/css">
 <link href="resources/web/style/othercss.css" rel="stylesheet"
 	type="text/css">
+<link rel="shortcut  icon" type="image/x-icon"
+	href="resources/web/images/favicon.ico" media="screen" />
 <script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
 <script language="javascript" src="resources/web/js/header.js"></script>
 </head>
 
 <body>
 	<div class="pageheader">
-		<%@include file="head.jsp" %>
+		<%@include file="head.jsp"%>
 		<div class="wholeworldbanner">
 			<div class="pagewidth pic_p">
 				<img src="resources/web/images/pagepic01.jpg">
@@ -43,7 +45,8 @@
 		<div class="pagewidth">
 			<h4>全球机房选择</h4>
 			<div class="selcitytable">
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" id="mtable">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0"
+					id="mtable">
 					<tr>
 						<th scope="row">亚 洲 区 域</th>
 						<td><a href="#">中国</a><a href="#">新加坡</a><a href="#">泰国</a><a
@@ -146,10 +149,10 @@
 			</div>
 		</div>
 	</div>
-	<%@include file="foot.jsp" %>
+	<%@include file="foot.jsp"%>
 	<script type="text/javascript">
-	 $(function(){
-		 $.ajax({
+		$(function() {
+			$.ajax({
 				url : 'wholeworld/getTreeMenu',
 				data : {},
 				dataType : 'json',
@@ -157,26 +160,27 @@
 				type : 'get',
 				success : function(json) {
 					console.log(json.result);
-					if(json.result){
-						var html="";
-						$.each(json.data,function(i, obj) {
-							var area="<tr>";
-							area+="<th scope='row'>"+obj.text+"</th>";
-							var option="";
+					if (json.result) {
+						var html = "";
+						$.each(json.data, function(i, obj) {
+							var area = "<tr>";
+							area += "<th scope='row'>" + obj.text + "</th>";
+							var option = "";
 							console.log(obj.text);
-							$.each(json.data[i].children,function(i,obj){
+							$.each(json.data[i].children, function(i, obj) {
 								console.log(obj.text);
-								option+="<a href='machine/index/"+obj.id+"'>"+obj.text+"</a>";
+								option += "<a href='machine/index/"+obj.id+"'>"
+										+ obj.text + "</a>";
 							});
-							area+="<td>"+option+"</td></tr>";
-							html+=area;
+							area += "<td>" + option + "</td></tr>";
+							html += area;
 						});
 						console.log(html);
 						$("#mtable").html(html);
 					}
 				}
 			});
-	 });
+		});
 	</script>
 </body>
 </html>

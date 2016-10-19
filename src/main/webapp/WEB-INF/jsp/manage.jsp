@@ -13,7 +13,7 @@
 <script type="text/javascript" src="resources/easyui/jquery.min.js"></script>
 <script type="text/javascript"
 	src="resources/easyui/jquery.easyui.min.js"></script>
-	
+<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />	
 <script type="text/javascript" src="resources/manage/mlink_basic.js"></script>	
 <script type="text/javascript" src="resources/manage/mlink_facility.js"></script>	
 <script type="text/javascript" src="resources/manage/mlink_single.js"></script>

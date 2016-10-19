@@ -11,6 +11,7 @@
 	type="text/css">
 <link href="resources/web/style/index.css" rel="stylesheet"
 	type="text/css">
+<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />	
 <script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
 <script language="javascript" src="resources/web/js/header.js"></script>
 <script>

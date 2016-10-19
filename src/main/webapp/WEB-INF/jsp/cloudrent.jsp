@@ -7,6 +7,7 @@
 <base
 	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath()%>/">
+<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />					
 <link href="resources/web/style/common.css" rel="stylesheet" type="text/css">
 <link href="resources/web/style/othercss.css" rel="stylesheet" type="text/css">
 <script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>

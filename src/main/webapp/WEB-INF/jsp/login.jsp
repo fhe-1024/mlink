@@ -7,6 +7,7 @@
 	href="resources/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
 	href="resources/easyui/themes/icon.css">
+<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />	
 <link rel="stylesheet" type="text/css" href="resources/easyui/demo.css">
 <script type="text/javascript" src="resources/easyui/jquery.min.js"></script>
 <script type="text/javascript"
