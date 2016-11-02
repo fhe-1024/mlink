@@ -4,16 +4,17 @@
 <head>
 <meta charset="utf-8">
 <title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
-<base
-	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath()%>/">
-<link href="resources/web/style/common.css" rel="stylesheet"
+<%
+	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath();
+%>
+<link href="<%=path%>/resources/web/style/common.css" rel="stylesheet"
 	type="text/css">
-<link href="resources/web/style/othercss.css" rel="stylesheet"
+<link href="<%=path%>/resources/web/style/othercss.css" rel="stylesheet"
 	type="text/css">
-<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />	
-<script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
-<script language="javascript" src="resources/web/js/header.js"></script>
+<link rel="shortcut  icon" type="image/x-icon" href="<%=path%>/resources/web/images/favicon.ico" media="screen"  />	
+<script language="javascript" src="<%=path%>/resources/web/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="<%=path%>/resources/web/js/header.js"></script>
 <script language="javascript">
 	$(function() {
 		$(".sexy").find(".sexyblcok").click(function() {
@@ -28,7 +29,7 @@
 		<%@include file="head.jsp"%>
 		<div class="wholeworldbanner">
 			<div class="pagewidth pic_p">
-				<img src="resources/web/images/aboutpic.jpg">
+				<img src="<%=path%>/resources/web/images/aboutpic.jpg">
 				<div class="intrpage jf">
 					<h3>关于我们</h3>
 					<p>
@@ -45,19 +46,19 @@
 			<div class="renthostdiv">
 				<div class="renthostblock Fcolumn">
 					<h5>咨询&amp;架构</h5>
-					<img src="resources/web/images/aboutpicblockpic01.jpg">
+					<img src="<%=path%>/resources/web/images/aboutpicblockpic01.jpg">
 				</div>
 				<div class="renthostblock Fcolumn">
 					<h5>采购&amp;物流</h5>
-					<img src="resources/web/images/aboutpicblockpic02.jpg">
+					<img src="<%=path%>/resources/web/images/aboutpicblockpic02.jpg">
 				</div>
 				<div class="renthostblock Fcolumn">
 					<h5>实施&amp;管理</h5>
-					<img src="resources/web/images/aboutpicblockpic03.jpg">
+					<img src="<%=path%>/resources/web/images/aboutpicblockpic03.jpg">
 				</div>
 				<div class="renthostblock Fcolumn">
 					<h5>优化&amp;规模</h5>
-					<img src="resources/web/images/aboutpicblockpic04.jpg">
+					<img src="<%=path%>/resources/web/images/aboutpicblockpic04.jpg">
 				</div>
 			</div>
 
@@ -181,7 +182,7 @@
 				sex='1';
 			}
 			$.ajax({
-				url : 'aboutus/saveConsult',
+				url : '<%=path%>/aboutus/saveConsult',
 				data : {'name':name,'sex':sex,'phone':phone,'position':position,'company':company,'text':text},
 				dataType : 'json',
 				async : false,

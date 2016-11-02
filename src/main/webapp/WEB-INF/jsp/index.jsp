@@ -3,17 +3,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
-<base
-	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath()%>/">
-<link href="resources/web/style/common.css" rel="stylesheet"
+<title>海外服务器托管/租用-云主机-云/IDC专线接入-MLINK-全球智能IDC一体化综合服务</title>
+<meta name="keywords"
+	content="全球IDC机房、全球IDC服务器、IDC服务提供商、海外服务器租用、海外服务器托管、带宽租用">
+<meta name="description"
+	content="MLINK致力于为国内企业提供香港、美国、新加坡、泰国等海内外服务器托管/租用、云主机、云/IDC专线接入以及防DDoS攻击等产品服务。跨国经验，质优价低，快速部署，7*24小时中英文客服支持。咨询热线：4001053626。">
+<%
+	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath();
+%>
+<link href="<%=path %>/resources/web/style/common.css" rel="stylesheet"
 	type="text/css">
-<link href="resources/web/style/index.css" rel="stylesheet"
+<link href="<%=path %>/resources/web/style/index.css" rel="stylesheet"
 	type="text/css">
-<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />	
-<script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
-<script language="javascript" src="resources/web/js/header.js"></script>
+<link rel="shortcut  icon" type="image/x-icon"
+	href="<%=path %>/resources/web/images/favicon.ico" media="screen" />
+<script language="javascript" src="<%=path %>/resources/web/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="<%=path %>/resources/web/js/header.js"></script>
 <script>
 	$(function() {
 		$(".businesstypelist_b").hover(function() {
@@ -98,7 +104,8 @@
 		<div class="pagewidth">
 			<h1>业务体系</h1>
 			<div class="businesstypelist">
-				<div class="businesstypelist_b" onclick="javascript:window.location.href='wholeworld/index'">
+				<div class="businesstypelist_b"
+					onclick="javascript:window.location.href='wholeworld/index'">
 					<div class="businesstypelist_b_p b_b_p_icon01"></div>
 					<div class="businesstypelist_b_t">
 						<h3>主机托管</h3>
@@ -107,7 +114,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b add_w" onclick="javascript:window.location.href='renthost/index'">
+				<div class="businesstypelist_b add_w"
+					onclick="javascript:window.location.href='renthost/index'">
 					<div class="businesstypelist_b_p b_b_p_icon02"></div>
 					<div class="businesstypelist_b_t">
 						<h3>主机租用</h3>
@@ -116,7 +124,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b" onclick="javascript:window.location.href='cloudrent/index'">
+				<div class="businesstypelist_b"
+					onclick="javascript:window.location.href='cloudrent/index'">
 					<div class="businesstypelist_b_p b_b_p_icon03"></div>
 					<div class="businesstypelist_b_t">
 						<h3>云主机</h3>
@@ -125,7 +134,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b" onclick="javascript:window.location.href='wholeworld/index'">
+				<div class="businesstypelist_b"
+					onclick="javascript:window.location.href='wholeworld/index'">
 					<div class="businesstypelist_b_p b_b_p_icon04"></div>
 					<div class="businesstypelist_b_t">
 						<h3>带宽租用</h3>
@@ -134,7 +144,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b add_w" onclick="javascript:window.location.href='sdn/index'">
+				<div class="businesstypelist_b add_w"
+					onclick="javascript:window.location.href='sdn/index'">
 					<div class="businesstypelist_b_p b_b_p_icon05"></div>
 					<div class="businesstypelist_b_t">
 						<h3>SDN专线</h3>
@@ -143,7 +154,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="businesstypelist_b" onclick="javascript:window.location.href='ddos/index'">
+				<div class="businesstypelist_b"
+					onclick="javascript:window.location.href='ddos/index'">
 					<div class="businesstypelist_b_p b_b_p_icon06"></div>
 					<div class="businesstypelist_b_t">
 						<h3>防DDoS 攻击</h3>

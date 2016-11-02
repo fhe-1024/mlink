@@ -3,17 +3,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
-<base
-	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath()%>/">
-<link href="resources/web/style/common.css" rel="stylesheet"
+<title>跨国IDC/公有云VPC互联-SDN专线- MLINK</title>
+<meta name="keywords"
+	content="SD-WAN、虚拟专线、公有云互联、数据中心互联、IDC互联、专线接入、阿里云和AWS互联、VPC互联">
+<meta name="description"
+	content="SDN专线业务提供跨国IDC和云数据中心的端到端快速通道建立、删除和调整，实现阿里云和AWS的无缝连接。自定义带宽和QoS，实时开通、按需付费。咨询热线：4001053626。">
+<%
+	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath();
+%>
+<link href="<%=path %>/resources/web/style/common.css" rel="stylesheet"
 	type="text/css">
-<link href="resources/web/style/othercss.css" rel="stylesheet"
+<link href="<%=path %>/resources/web/style/othercss.css" rel="stylesheet"
 	type="text/css">
-<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />	
-<script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
-<script language="javascript" src="resources/web/js/header.js"></script>
+<link rel="shortcut  icon" type="image/x-icon"
+	href="<%=path %>/resources/web/images/favicon.ico" media="screen" />
+<script language="javascript" src="<%=path %>/resources/web/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="<%=path %>/resources/web/js/header.js"></script>
 </head>
 
 <body>
@@ -21,7 +27,7 @@
 		<%@include file="head.jsp"%>
 		<div class="wholeworldbanner">
 			<div class="pagewidth pic_p">
-				<img src="resources/web/images/sdnpic.jpg">
+				<img src="<%=path %>/resources/web/images/sdnpic.jpg">
 				<div class="intrpage jf">
 					<h3>SDN专线服务</h3>
 					<p>网络即服务 即时开启您的全球私有网络</p>
@@ -54,7 +60,8 @@
 		<div class="pagewidth">
 			<h4>专线价格详情</h4>
 			<div class="detailstable">
-				<table width="600" border="0" cellspacing="0" cellpadding="0" id="sdn">
+				<table width="600" border="0" cellspacing="0" cellpadding="0"
+					id="sdn">
 					<tr>
 						<td>美国洛杉矶 - 北京</td>
 						<td>1000元/Mbps/月</td>
@@ -68,16 +75,15 @@
 						<td>134元/Mbps/月</td>
 					</tr>
 				</table>
-				<div class="tablemark">专线订购说明：<br>
-费用按购买节点、带宽以及周期计算，所有款项采取预付方式。<br>
-按天或月在管理平台上自主订购。如需要一年以上的专线服务，需在线下签署合约<br>
-注意：以上报价未包含6%的增值税。
-</div>
+				<div class="tablemark">
+					专线订购说明：<br> 费用按购买节点、带宽以及周期计算，所有款项采取预付方式。<br>
+					按天或月在管理平台上自主订购。如需要一年以上的专线服务，需在线下签署合约<br> 注意：以上报价未包含6%的增值税。
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="pagebanner">
-		<img src="resources/web/images/pagebanner.jpg">
+		<img src="<%=path %>/resources/web/images/pagebanner.jpg">
 	</div>
 	<div class="rowblock graybg">
 		<div class="pagewidth">
@@ -115,28 +121,29 @@
 	</div>
 	<%@include file="foot.jsp"%>
 	<script type="text/javascript">
-	 $.ajax({
-			url : 'sdn/getLineList',
+		$.ajax({
+			url : '<%=path %>/sdn/getLineList',
 			data : {},
 			dataType : 'json',
 			async : false,
 			type : 'get',
 			success : function(json) {
 				console.log(json);
-				if(json.result){
-					var sdnhtml="";
+				if (json.result) {
+					var sdnhtml = "";
 					//<tr>
 					//<td>美国洛杉矶 - 北京</td>
 					//<td>1000元/Mbps/月</td>
 					//</tr>
-					$.each(json.data,function(i, obj) {
+					$.each(json.data, function(i, obj) {
 						console.log(obj.name);
-						sdnhtml+="<tr><td>"+obj.name+"</td><td>"+obj.price+"元/Mbps/月</td><tr>";
-					}); 
+						sdnhtml += "<tr><td>" + obj.name + "</td><td>"
+								+ obj.price + "元/Mbps/月</td><tr>";
+					});
 					$("#sdn").html(sdnhtml);
 				}
 			}
-	 });	
+		});
 	</script>
 </body>
 </html>

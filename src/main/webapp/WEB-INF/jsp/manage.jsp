@@ -126,7 +126,7 @@
 		 <form id="facilityform">
 		 	<input type="hidden" name="facility_countryid" value=""/>
 		 	<input type="hidden" name="facility_id" value=""/>
-		 	 <div style="margin-bottom:20px">
+		 	 <div style="margin-bottom:20px" align="left">
                 <select class="easyui-combobox" id="facility_type" name="facility_type" label="类型:" labelPosition="top" style="width:100%;height: 52px;">
                 	<option value="0">机房-托管规格-机柜功率-机柜价格</option>
                 	<option value="1">(机房)-托管规格-机柜功率-机柜价格</option>

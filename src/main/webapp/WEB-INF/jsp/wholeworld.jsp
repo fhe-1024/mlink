@@ -3,18 +3,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
-<base
-	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath()%>/">
-<link href="resources/web/style/common.css" rel="stylesheet"
+<title>全球机房-香港/台湾/美国/新加坡/泰国/印度/越南/英国/德国服务器托管- MLINK</title>
+<meta name="keywords"
+	content="海外服务器托管、香港机房托管、美国机房、新加坡机房、泰国机房、越南机房">
+<meta name="description"
+	content="MLINK提供全球50+的顶级数据中心资源的机房托管和带宽租用服务，覆盖亚洲、美洲、欧洲和大洋洲。运营商中立，1.4Tpbs总出口带宽，7*24小时技术支持。咨询热线：4001053626。">
+<%
+	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath();
+%>
+<link href="<%=path %>/resources/web/style/common.css" rel="stylesheet"
 	type="text/css">
-<link href="resources/web/style/othercss.css" rel="stylesheet"
+<link href="<%=path %>/resources/web/style/othercss.css" rel="stylesheet"
 	type="text/css">
 <link rel="shortcut  icon" type="image/x-icon"
-	href="resources/web/images/favicon.ico" media="screen" />
-<script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
-<script language="javascript" src="resources/web/js/header.js"></script>
+	href="<%=path %>/resources/web/images/favicon.ico" media="screen" />
+<script language="javascript" src="<%=path %>/resources/web/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="<%=path %>/resources/web/js/header.js"></script>
 </head>
 
 <body>
@@ -22,7 +27,7 @@
 		<%@include file="head.jsp"%>
 		<div class="wholeworldbanner">
 			<div class="pagewidth pic_p">
-				<img src="resources/web/images/pagepic01.jpg">
+				<img src="<%=path %>/resources/web/images/pagepic01.jpg">
 				<div class="intrpage">
 					<h3>主机托管服务</h3>
 					<p>全球50+的顶级数据中心，覆盖亚洲、美洲、欧洲及大洋洲。全球带宽总容量
@@ -36,7 +41,7 @@
 			<h4>全球网络布局</h4>
 			<div class="h_txt">50+顶级数据中心，1.4Tbps</div>
 			<div class="map_w">
-				<img src="resources/web/images/worldmappic.jpg">
+				<img src="<%=path %>/resources/web/images/worldmappic.jpg">
 				<div class="map_w_t">200+与国际运营商的互联互通 | 7*24洛杉矶与上海网络运营中心</div>
 			</div>
 		</div>
@@ -153,7 +158,7 @@
 	<script type="text/javascript">
 		$(function() {
 			$.ajax({
-				url : 'wholeworld/getTreeMenu',
+				url : '<%=path %>/wholeworld/getTreeMenu',
 				data : {},
 				dataType : 'json',
 				async : false,
@@ -169,7 +174,7 @@
 							console.log(obj.text);
 							$.each(json.data[i].children, function(i, obj) {
 								console.log(obj.text);
-								option += "<a href='machine/index/"+obj.id+"'>"
+								option += "<a href='<%=path %>/machine/index/"+obj.id+"'>"
 										+ obj.text + "</a>";
 							});
 							area += "<td>" + option + "</td></tr>";

@@ -3,18 +3,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>香港、美国、新加坡、泰国等海外服务器托管/租用-云主机-专线接入-MLINK-全球智能IDC一体化综合服务</title>
-<base
-	href="<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath()%>/">
-<link href="resources/web/style/common.css" rel="stylesheet"
+<title>全球机房-香港/台湾/美国/新加坡/泰国/印度/越南/英国/德国服务器托管- MLINK</title>
+<meta name="keywords"
+	content="海外服务器托管、香港机房托管、美国机房、新加坡机房、泰国机房、越南机房">
+<meta name="description"
+	content="MLINK提供全球50+的顶级数据中心资源的机房托管和带宽租用服务，覆盖亚洲、美洲、欧洲和大洋洲。运营商中立，1.4Tpbs总出口带宽，7*24小时技术支持。咨询热线：4001053626。">
+<%
+	String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath();
+%>
+<link href="<%=path %>/resources/web/style/common.css" rel="stylesheet"
 	type="text/css">
-<link href="resources/web/style/othercss.css" rel="stylesheet"
+<link href="<%=path %>/resources/web/style/othercss.css" rel="stylesheet"
 	type="text/css">
-<link rel="shortcut  icon" type="image/x-icon" href="resources/web/images/favicon.ico" media="screen"  />	
-<script language="javascript" src="resources/web/js/jquery-1.8.3.min.js"></script>
-<script language="javascript" src="resources/web/js/header.js"></script>
-<script language="javascript" src="resources/web/js/pagejs.js"></script>
+<link rel="shortcut  icon" type="image/x-icon" href="<%=path %>/resources/web/images/favicon.ico" media="screen"  />	
+<script language="javascript" src="<%=path %>/resources/web/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="<%=path %>/resources/web/js/header.js"></script>
+<script language="javascript" src="<%=path %>/resources/web/js/pagejs.js"></script>
 </head>
 
 <body>
@@ -22,7 +27,7 @@
 		<%@include file="head.jsp" %>
 		<div class="wholeworldbanner">
 			<div class="pagewidth pic_p">
-				<img src="resources/web/images/abroadpic.jpg">
+				<img src="<%=path %>/resources/web/images/abroadpic.jpg">
 				<div class="intrpage jf">
 					<h3>
 						<em><%=request.getAttribute("countryname") %></em> 机房托管服务
@@ -80,7 +85,7 @@
 		</div>
 	</div>
 	<div class="pagebanner">
-		<img src="resources/web/images/pagebanner.jpg">
+		<img src="<%=path %>/resources/web/images/pagebanner.jpg">
 	</div>
 	<div class="rowblock">
 		<div class="pagewidth">
@@ -98,7 +103,7 @@
 		return {
 			inittable : function() {
 				 $.ajax({
-						url : 'machine/getFacilityList',
+						url : '<%=path %>/machine/getFacilityList',
 						data : {"countryid":"<%=request.getAttribute("countryid")%>"},
 						dataType : 'json',
 						async : false,
@@ -166,7 +171,7 @@
 			
 			inittip:function(){
 				$.ajax({
-					url : 'machine/getTipEntity',
+					url : '<%=path %>/machine/getTipEntity',
 					data : {"countryid":"<%=request.getAttribute("countryid")%>"},
 					dataType : 'json',
 					async : false,
@@ -184,7 +189,7 @@
 			
 			initmachine:function(){
 				 $.ajax({
-						url : 'machine/getNodeList',
+						url : '<%=path %>/machine/getNodeList',
 						data : {"countryid":"<%=request.getAttribute("countryid")%>"},
 						dataType : 'json',
 						async : false,
@@ -220,7 +225,7 @@
 			},
 			initsingle:function(nodeid){
 				 $.ajax({
-						url : 'machine/getSingleEntity',
+						url : '<%=path %>/machine/getSingleEntity',
 						data : {"nodeid":nodeid},
 						dataType : 'json',
 						async : false,
