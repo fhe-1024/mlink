@@ -49,7 +49,7 @@
 		<div class="pagewidth sd_wbg">
 			<h4>SD-WAN 全球网络布局</h4>
 			<div class="divrightfloat">
-				<img src="resources/web/images/sd_wbg_c.png">
+				<img src="<%=path %>/resources/web/images/sd_wbg_c.png">
 				<p>已打通北京、上海、香港、洛杉矶各节点之间的网络，目前支持的公有云 包括 AWS、Google Cloud、Windows
 					Azure，以及阿里云和腾讯云。 仅需5分钟，便可以打通中美之间云／IDC 之间的连接</p>
 			</div>
